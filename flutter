@@ -1,1 +1,2 @@
 flutterfire configure --project=gold-mode-410402
+sudo apt install clang cmake ninja-build pkg-config libgtk-3-dev
