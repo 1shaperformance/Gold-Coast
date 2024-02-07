@@ -24,3 +24,38 @@ import 'firebase_options.dart';
 
 
 flutterfire configure --project=gold-mode-410402
+
+dependencies {
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+
+    // Add the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-auth")
+}
+dependencies {
+    // Add the dependency for the Firebase Authentication library
+    // When NOT using the BoM, you must specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-auth:22.3.1")
+}
+dependencies {
+  // ...
+
+  // Import the Firebase BoM
+  implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+
+  // Using KTX libraries for Authentication and Cloud Firestore
+  implementation("com.google.firebase:firebase-auth-ktx")
+  implementation("com.google.firebase:firebase-firestore-ktx")
+}
+dependencies {
+  // ...
+
+  // Import the Firebase BoM as usual
+  // Make sure to use Firebase BoM v32.5.0 or higher
+  implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+
+  // No need to use the KTX libraries, everything is now in the main module
+  implementation("com.google.firebase:firebase-auth")
+  implementation("com.google.firebase:firebase-firestore")
+}
