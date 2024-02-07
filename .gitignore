@@ -21,7 +21,7 @@ flutterfire configure --project=gold-mode-410402
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-// ...
+
 
 await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
