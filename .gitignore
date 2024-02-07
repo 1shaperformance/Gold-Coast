@@ -23,3 +23,4 @@ import 'firebase_options.dart';
 
 
 
+flutterfire configure --project=gold-mode-410402
