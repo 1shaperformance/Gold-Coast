@@ -74,3 +74,8 @@ dependencies {
       <!-- SendGrid 3 libraries are broken in App Engine standard environment --> 
       <rule groupId="com.sendgrid" artifactId="sendgrid-java" comparisonMethod="maven"> 
         <ignoreVersions>
+compileSdk 33 // Recognized ✅
+compileSdkVersion 33 // Recognized ✅
+compileSdk = 33 // Not recognized ❌
+compileSdkVersion = 33 // Not recognized ❌pip install Flask==3.0.2
+$ pip install -U Flask
