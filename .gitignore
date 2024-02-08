@@ -57,5 +57,5 @@ dependencies {
 
   // No need to use the KTX libraries, everything is now in the main module
   implementation("com.google.firebase:firebase-auth")
-  implementation("com.google.firebase:firebase-firestore")
+  implementation("com.google.firebase:firebase-firestore") 
 } 
