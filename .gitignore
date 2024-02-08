@@ -74,3 +74,13 @@ dependencies {
       <!-- SendGrid 3 libraries are broken in App Engine standard environment --> 
       <rule groupId="com.sendgrid" artifactId="sendgrid-java" comparisonMethod="maven"> 
         <ignoreVersions>
+pip install Flask==3.0.2
+$ pip install -U Flask
+# save this as app.py
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello, World!"
