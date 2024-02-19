@@ -23,3 +23,6 @@ await Firebase.initializeApp(
 
 version=3.1.1
 latestReleasedVersion=3.1.0
+
+
+dart pub global activate flutterfire_cli
