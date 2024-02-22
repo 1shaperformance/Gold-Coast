@@ -231,3 +231,22 @@ jobs:
 Das Ende ist:
 
 </script>
+
+# Get `depot_tools` in $PATH if you don't have it
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git $HOME/src/depot_tools
+export PATH="$PATH:$HOME/src/depot_tools"
+
+# Check out the recipe engine repo
+git clone https://chromium.googlesource.com/infra/luci/recipes-py $HOME/src/recipes-py
+
+# make your change
+cd $HOME/src/recipes-py
+git new-branch cool_feature
+# hack hack
+git commit -a -m "This is awesome"
+
+# This will ask for your Google Account credentials.
+git cl upload -s -r joe@example.com
+# Wait for approval over email.
+# Click "Submit to CQ" button or ask reviewer to do it for you.
+# Wait for the change to be tested and landed automatically.
