@@ -25,3 +25,115 @@ und Petit-Bianco, Alexandre und Albertini, Ange},
 title = {Magika Content-Type-Scanner},
 URL = {https://github.com/google/magika}
 }
+
+git clone https://github.com/google/magika
+cd magika/
+docker build -t magika .
+docker run -it --rm -v $(pwd):/magika magika -r /magika/tests_data
+
+$ magika -r tests_data/
+tests_data/README.md: Markdown document (text)
+tests_data/basic/code.asm: Assembly (code)
+tests_data/basic/code.c: C source (code)
+tests_data/basic/code.css: CSS source (code)
+tests_data/basic/code.js: JavaScript source (code)
+tests_data/basic/code.py: Python source (code)
+tests_data/basic/code.rs: Rust source (code)
+...
+tests_data/mitra/7-zip.7z: 7-zip archive data (archive)
+tests_data/mitra/bmp.bmp: BMP image data (image)
+tests_data/mitra/bzip2.bz2: bzip2 compressed data (archive)
+tests_data/mitra/cab.cab: Microsoft Cabinet archive data (archive)
+tests_data/mitra/elf.elf: ELF executable (executable)
+tests_data/mitra/flac.flac: FLAC audio bitstream data (audio)
+...
+
+$ magika code.py --json
+[
+    {
+        "path": "code.py",
+        "dl": {
+            "ct_label": "python",
+            "score": 0.9940916895866394,
+            "group": "code",
+            "mime_type": "text/x-python",
+            "magic": "Python script",
+            "description": "Python source"
+        },
+        "output": {
+            "ct_label": "python",
+            "score": 0.9940916895866394,
+            "group": "code",
+            "mime_type": "text/x-python",
+            "magic": "Python script",
+            "description": "Python source"
+        }
+    }
+]
+
+$ cat doc.ini | magika -
+-: INI configuration file (text)
+
+$ magika -h
+Usage: magika [OPTIONS] [FILE]...
+
+  Magika - Determine type of FILEs with deep-learning.
+
+Options:
+  -r, --recursive                 When passing this option, magika scans every
+                                  file within directories, instead of
+                                  outputting "directory"
+  --json                          Output in JSON format.
+  --jsonl                         Output in JSONL format.
+  -i, --mime-type                 Output the MIME type instead of a verbose
+                                  content type description.
+  -l, --label                     Output a simple label instead of a verbose
+                                  content type description. Use --list-output-
+                                  content-types for the list of supported
+                                  output.
+  -c, --compatibility-mode        Compatibility mode: output is as close as
+                                  possible to `file` and colors are disabled.
+  -s, --output-score              Output the prediction score in addition to
+                                  the content type.
+  -m, --prediction-mode [best-guess|medium-confidence|high-confidence]
+  --batch-size INTEGER            How many files to process in one batch.
+  --no-dereference                This option causes symlinks not to be
+                                  followed. By default, symlinks are
+                                  dereferenced.
+  --colors / --no-colors          Enable/disable use of colors.
+  -v, --verbose                   Enable more verbose output.
+  -vv, --debug                    Enable debug logging.
+  --generate-report               Generate report useful when reporting
+                                  feedback.
+  --version                       Print the version and exit.
+  --list-output-content-types     Show a list of supported content types.
+  --model-dir DIRECTORY           Use a custom model.
+  -h, --help                      Show this message and exit.
+
+  Magika version: "0.5.0"
+
+  Default model: "standard_v1"
+
+  Send any feedback to magika-dev@google.com or via GitHub issues.
+
+>>> from magika import Magika
+>>> m = Magika()
+>>> res = m.identify_bytes(b"# Example\nThis is an example of markdown!")
+>>> print(res.output.ct_label)
+markdown
+
+$ git clone https://github.com/google/magika
+$ cd magika/python
+$ poetry shell && poetry install
+$ magika -r ../tests_data
+
+$ cd magika/python
+$ poetry shell
+$ pytest tests/
+
+@software{magika,
+author = {Fratantonio, Yanick and Bursztein, Elie and Invernizzi, Luca and Zhang, Marina and Metitieri, Giancarlo and Kurt, Thomas and Galilee, Francois and Petit-Bianco, Alexandre and Farah, Loua and Albertini, Ange},
+title = {{Magika content-type scanner}},
+url = {https://github.com/google/magika}
+}
+
