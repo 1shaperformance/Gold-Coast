@@ -32,3 +32,8 @@ pod 'FirebaseUI', '~> 8.0'       # Pull in all Firebase UI features
 
 platform :ios, '11.0'
 use_frameworks!
+
+$ git clone https://github.com/firebase/FirebaseUI-iOS.git
+$ cd FirebaseUI-iOS
+$ cd Auth # or PhoneAuth, Database, etc
+$ pod install
