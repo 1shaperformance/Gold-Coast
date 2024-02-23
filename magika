@@ -1,1 +1,18 @@
 pip install magika
+$magika-Beispiele/*
+
+code.asm: Assembly (Code)
+code.py: Python-Quelle (Code)
+doc.docx: Microsoft Word 2007+ Dokument (Dokument)
+doc.ini: INI-Konfigurationsdatei (Text)
+elf64.elf: ELF-ausführbare Datei (ausführbare Datei)
+flac.flac: FLAC-Audio-Bitstream-Daten (Audio)
+image.bmp: BMP-Bilddaten (Bild)
+java.class: Java-kompilierter Bytecode (ausführbar)
+jpg.jpg: JPEG-Bilddaten (Bild)
+pdf.pdf: PDF-Dokument (Dokument)
+pe32.exe: PE-ausführbare Datei (ausführbare Datei)
+png.png: PNG-Bilddaten (Bild)
+README.md: Markdown-Dokument (Text)
+tar.tar: POSIX-Tar-Archiv (Archiv)
+webm.webm: WebM-Daten (Video)
