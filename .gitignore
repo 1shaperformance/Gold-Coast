@@ -1,4 +1,24 @@
-demtarget/
+import java.io.BufferedReader;
+...
+
+ReportDownloadOptions options = new ReportDownloadOptions();
+options.setExportFormat(exportFormat);
+options.setUseGzipCompression(true);
+
+BufferedReader contentsReader = null;
+try {
+  contentsReader = reportDownloader.getReportAsCharSource(options)
+      .openBufferedStream();
+
+  String line;
+  while ((line = contentsReader.readLine()) != null) {
+    // Process a single line of report contents...
+  }
+} finally {
+  if (contentsReader != null) {
+    contentsReader.close();
+  }
+}demtarget/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
