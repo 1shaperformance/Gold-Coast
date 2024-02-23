@@ -1,4 +1,4 @@
-mtarget/
+demtarget/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -765,5 +765,21 @@ fs.writeFileSync(filePath, transformed);
         "node": ">=12"
       }
     }
+  }
+}
+
+{
+  "name": "htmz",
+  "version": "1.0.2",
+  "type": "module",
+  "bin": {
+    "htmz": "index.js",
+    "htmzify": "index.js"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "parse5-html-rewriting-stream": "^7.0.0",
+    "stream-string": "^2.0.4",
+    "yargs": "^17.7.2"
   }
 }
