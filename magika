@@ -16,3 +16,12 @@ png.png: PNG-Bilddaten (Bild)
 README.md: Markdown-Dokument (Text)
 tar.tar: POSIX-Tar-Archiv (Archiv)
 webm.webm: WebM-Daten (Video)
+
+
+@software{magika,
+Autor = {Fratantonio, Yanick und Bursztein, Elie und Invernizzi, Luca und Zhang, Marina
+und Metitieri, Giancarlo und Kurt, Thomas und Galiläa, Francois
+und Petit-Bianco, Alexandre und Albertini, Ange},
+title = {Magika Content-Type-Scanner},
+URL = {https://github.com/google/magika}
+}
