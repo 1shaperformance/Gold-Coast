@@ -803,3 +803,54 @@ fs.writeFileSync(filePath, transformed);
     "yargs": "^17.7.2"
   }
 }
+// The credential object is thread-safe.
+Credential credential = //...;
+
+// The session object is not thread-safe.
+AdManagerSession session = new AdManagerSession.Builder() // Builders are not thread-safe.
+    .fromFile()
+    .withOAuth2Credential(credential) // Uses thread-safe credential
+    .build(); // /build() returns a brand new object every time.
+
+// Threadsafe and lightweight.
+AdManagerServices adManagerServices = new AdManagerServices();
+
+// The Service “stubs” are NOT thread-safe.
+// Stubs retain a reference to the session they are constructed for and will see any
+// changes made to the session within the same thread. When used in multiple threads it
+// is possible to see the object in an inconsistent state, causing bugs.
+CreativeServiceInterface creativeService =
+    adManagerServices.get(session, CreativeServiceInterface.class);
+
+CreativeAsset creativeAsset = new CreativeAsset();
+// Utilities such as Media are usually static and therefore thread-safe.
+creativeAsset.setAssetByteArray(Media.getMediaDataFromUrl("https://goo.gl/3b9Wfh"));
+
+// ReportDownloader retains a reference to the session and is not thread-safe.
+ReportDownloader reportDownloader =
+    new ReportDownloader(reportService, reportJob.getId());
+Service stubs
+Service stubs are the objects used to invoke webservice calls. CompanyService is one example for Ad Manager. These objects are not thread-safe and should have unique objects used per thread.
+
+Service locators
+Each product has a Services object such as AdManagerServices. These objects are thread-safe and can be re-used across threads. However, as mentioned above, the Service stubs returned by these classes are not.
+
+Note that when you request a service stub from a service locator, you provide the session that will be used to make requests. If you make changes to the session, they will be used for all successive API calls.
+
+Sessions
+AdManagerSession holds information such as credentials and options used when making requests. These objects are not thread-safe. It is possible to make writes to this object which might let other threads view this object in an inconsistent state.
+
+OAuth2
+The Credential object is thread-safe. Therefore, you can reuse the same credential object for different sessions across multiple threads.
+
+Ad Manager
+Here’s a pattern than can be use to perform different operations with the same account:
+
+AdManagerSession.Builder builder = new AdManagerSession.Builder()
+    .withNetworkCode(networkCode)
+    .withCredential(credential)
+    .withUserAgent(userAgent);
+
+new FooThread(builder.build()).start();
+new BarThread(builder.build()).start();
+new BazThread(builder.build()).start();
