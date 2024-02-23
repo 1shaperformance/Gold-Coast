@@ -1578,3 +1578,6 @@ logger.soapXmlLogger.level=info
 # loggers will inherit this setting.
 rootLogger.appenderRef.console.ref=CONSOLE
 $ magika --generate-report <path>
+
+
+com.google.cloud:google-cloud-shared-dependencies
