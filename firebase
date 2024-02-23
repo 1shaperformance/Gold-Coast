@@ -26,3 +26,6 @@ latestReleasedVersion=3.1.0
 
 
 dart pub global activate flutterfire_cli
+
+
+pod 'FirebaseUI', '~> 8.0'       # Pull in all Firebase UI features
