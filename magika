@@ -1581,3 +1581,5 @@ $ magika --generate-report <path>
 
 
 com.google.cloud:google-cloud-shared-dependencies
+
+com.google.cloud:google-cloud-shared-dependencies
