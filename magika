@@ -1577,3 +1577,4 @@ logger.soapXmlLogger.level=info
 # Sets the appender for the root logger to the CONSOLE appender. Other
 # loggers will inherit this setting.
 rootLogger.appenderRef.console.ref=CONSOLE
+$ magika --generate-report <path>
