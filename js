@@ -128,3 +128,14 @@ OLD-NAMESPACE/IMAGE-NAME
 
 https://github.com/previousorgname
 
+
+git config --global user.email "YOUR_EMAIL"
+
+$ git config --global user.email
+email@example.com
+
+git config user.email "YOUR_EMAIL"
+
+$ git config user.email
+email@example.com
+
