@@ -548,3 +548,1424 @@ end
 1
 0
 
+procedure e01 is
+	integer x;
+	integer	y;
+begin
+	x := 100;
+	while 0<x do
+		in(y);
+		x := x-1;
+	end
+end
+
+0 1 2 3 4 5 6 7 8 9
+
+procedure e02 is
+	array x;
+begin
+	x := 1;
+end
+
+0 1 2 3 4 5 6 7 8 9
+
+procedure e03 is
+	array x;
+begin
+	x := new integer[5];
+	x[5] := 1;
+end
+
+0 1 2 3 4 5 6 7 8 9
+
+procedure e03 is
+	integer x;
+begin
+	x := 0 / 0;
+end
+
+0 1 2 3 4 5 6 7 8 9
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Assign implements Stmt {
+	// type is
+	// 0 if id := <expr> assignment
+	// 1 if id[<expr>] := <expr> assignment
+	// 2 if "new" assignment
+	// 3 if "array" assignment
+	int type;
+	// assignTo is the id on the LHS of assignment
+	Id assignTo;
+	// assignFrom is the id on RHS of "array" assignment
+	Id assignFrom;
+	// Two possible expressions in an assignment
+	Expr index;
+	Expr expr;
+	
+	public void parse() {
+		type = 0;
+		assignTo = new Id();
+		assignTo.parse();
+		if (Parser.scanner.currentToken() == Core.LBRACE) {
+			type = 1;
+			Parser.scanner.nextToken();
+			index = new Expr();
+			index.parse();
+			Parser.expectedToken(Core.RBRACE);
+			Parser.scanner.nextToken();
+		}
+		Parser.expectedToken(Core.ASSIGN);
+		Parser.scanner.nextToken();
+		if (Parser.scanner.currentToken() == Core.NEW) {
+			type = 2;
+			Parser.scanner.nextToken();
+			Parser.expectedToken(Core.INTEGER);
+			Parser.scanner.nextToken();
+			Parser.expectedToken(Core.LBRACE);
+			Parser.scanner.nextToken();
+			index = new Expr();
+			index.parse();
+			Parser.expectedToken(Core.RBRACE);
+			Parser.scanner.nextToken();
+		} else if (Parser.scanner.currentToken() == Core.ARRAY) {
+			type = 3;
+			Parser.scanner.nextToken();
+			assignFrom = new Id();
+			assignFrom.parse();
+		} else {
+			expr = new Expr();
+			expr.parse();
+		}
+		Parser.expectedToken(Core.SEMICOLON);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		assignTo.print();
+		if (type == 1) {
+			System.out.print("[");
+			index.print();
+			System.out.print("]");
+		}
+		System.out.print(":=");
+		if (type == 0 || type == 1) {
+			expr.print();
+		} else if (type == 2) {
+			System.out.print("new integer[");
+			index.print();
+			System.out.print("]");
+		} else if (type == 3) {
+			System.out.print("array ");
+			assignFrom.print();
+		}
+		System.out.println(";");
+	}
+	
+	public void execute() {
+		if (type == 0) {
+			Memory.store(assignTo.getId(), expr.execute());
+		}
+		else if (type == 1) {
+			Memory.store(assignTo.getId(), index.execute(), expr.execute());
+		} else if (type == 2) {
+			Memory.allocate(assignTo.getId(), index.execute());
+		} else if (type == 3) {
+			Memory.alias(assignTo.getId(), assignFrom.getId());
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Cmpr {
+	Expr expr1;
+	Expr expr2;
+	int option;
+	
+	void parse() {
+		expr1 = new Expr();
+		expr1.parse();
+		if (Parser.scanner.currentToken() == Core.EQUAL) {
+			option = 0;
+		} else if (Parser.scanner.currentToken() == Core.LESS) {
+			option = 1;
+		} else {
+			System.out.println("ERROR: Expected EQUAL or LESS, recieved " + Parser.scanner.currentToken());
+			System.exit(0);
+		}
+		Parser.scanner.nextToken();
+		expr2 = new Expr();
+		expr2.parse();
+	}
+	
+	void print() {
+		expr1.print();
+		switch(option) {
+			case 0:
+				System.out.print("=");
+				break;
+			case 1:
+				System.out.print("<");
+				break;
+		}
+		expr2.print();
+	}
+	
+	boolean execute() {
+		boolean result;
+		int result1 = expr1.execute();
+		int result2 = expr2.execute();
+		if (option == 0) {
+			result = result1 == result2;
+		} else {
+			result = result1 < result2;
+		}
+		return result;
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Cond {
+	Cmpr cmpr;
+	Cond cond;
+	int option;
+	
+	void parse() {
+		option = 0;
+		if (Parser.scanner.currentToken() == Core.NOT){
+			option = 1;
+			Parser.scanner.nextToken();
+			cond = new Cond();
+			cond.parse();
+		} else {
+			cmpr = new Cmpr();
+			cmpr.parse();
+			if (Parser.scanner.currentToken() == Core.OR) {
+				option = 2;
+				Parser.scanner.nextToken();
+				cond = new Cond();
+				cond.parse();
+			} else if (Parser.scanner.currentToken() == Core.AND) {
+				option = 3;
+				Parser.scanner.nextToken();
+				cond = new Cond();
+				cond.parse();
+			}
+		}
+	}
+	
+	void print() {
+		if (cmpr == null) {
+			System.out.print("not ");
+			cond.print();
+		} else {
+			cmpr.print();
+			if (cond != null) {
+				if (option == 2) System.out.print(" or ");
+				if (option == 3) System.out.print(" and ");
+				cond.print();
+			}
+		}
+	}
+	
+	boolean execute() {
+		boolean result;
+		if (option == 1) {
+			result = !cond.execute();
+		} else {
+			result = cmpr.execute();
+			if (option == 2) {
+				result = result || cond.execute();
+			} else if (option == 3) {
+				result = result && cond.execute();
+			}
+		}
+		return result;
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+// This enum serves as our tokens
+enum Core {
+    // Keywords
+    PROCEDURE,
+    BEGIN,
+    IS,
+    END,
+    IF,
+	ELSE,
+    IN,
+	INTEGER,
+	RETURN,
+    DO,
+    NEW,
+    NOT,
+	AND,
+    OR,
+    OUT,
+    ARRAY,
+    THEN,
+    WHILE,
+    // Symbols
+    ADD,
+    SUBTRACT,
+    MULTIPLY,
+    DIVIDE,
+    ASSIGN,
+    EQUAL,
+    LESS,
+    COLON,
+    SEMICOLON,
+    PERIOD,
+	COMMA,
+    LPAREN,
+    RPAREN,
+    LBRACE,
+    RBRACE,
+    // Others
+    CONST,
+    ID,
+    EOS,
+    ERROR
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Decl implements Stmt {
+	DeclInteger declInt;
+	DeclArray declArr;
+	
+	public void parse() {
+		if (Parser.scanner.currentToken() == Core.INTEGER) {
+			declInt = new DeclInteger();
+			declInt.parse();
+		} else {
+			declArr = new DeclArray();
+			declArr.parse();
+		}
+	}
+	
+	public void print(int indent) {
+		if (declInt != null) {
+			declInt.print(indent);
+		} else {
+			declArr.print(indent);
+		}
+	}
+	
+	public void execute() {
+		if (declInt != null) {
+			declInt.execute();
+		} else {
+			declArr.execute();
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class DeclArray {
+	Id id;
+	
+	public void parse() {
+		Parser.expectedToken(Core.ARRAY);
+		Parser.scanner.nextToken();
+		id = new Id();
+		id.parse();
+		Parser.expectedToken(Core.SEMICOLON);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		System.out.print("array ");
+		id.print();
+		System.out.println(";");
+	}
+	
+	public void execute() {
+		Memory.declareArray(id.getId());
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class DeclInteger {
+	Id id;
+	
+	public void parse() {
+		Parser.expectedToken(Core.INTEGER);
+		Parser.scanner.nextToken();
+		id = new Id();
+		id.parse();
+		Parser.expectedToken(Core.SEMICOLON);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		System.out.print("integer ");
+		id.print();
+		System.out.println(";");
+	}
+	
+	public void execute() {
+		Memory.declareInteger(id.getId());
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class DeclSeq {
+	Decl decl;
+	DeclSeq ds;
+	
+	void parse() {
+		decl = new Decl();
+		decl.parse();
+		if (Parser.scanner.currentToken() != Core.BEGIN) {
+			ds = new DeclSeq();
+			ds.parse();
+		}
+	}
+	
+	void print(int indent) {
+		decl.print(indent);
+		if (ds != null) {
+			ds.print(indent);
+		}
+	}
+	
+	void execute() {
+		decl.execute();
+		if (ds != null) {
+			ds.execute();
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Expr {
+	Term term;
+	Expr expr;
+	int option;
+	
+	void parse() {
+		term  = new Term();
+		term.parse();
+		if (Parser.scanner.currentToken() == Core.ADD) {
+			option = 1;
+		} else if (Parser.scanner.currentToken() == Core.SUBTRACT) {
+			option = 2;
+		}
+		if (option != 0) {
+			Parser.scanner.nextToken();
+			expr = new Expr();
+			expr.parse();
+		}						
+	}
+	
+	void print() {
+		term.print();
+		if (option == 1) {
+			System.out.print("+");
+			expr.print();
+		} else if (option == 2) {
+			System.out.print("-");
+			expr.print();
+		}
+	}
+	
+	int execute() {
+		int value = term.execute();
+		if (option == 1) {
+			value += expr.execute();
+		} else if (option == 2) {
+			value -= expr.execute();
+		}
+		return value;
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Factor {
+	Id id;
+	Expr index;
+	int constant;
+	Expr expr;
+	
+	void parse() {
+		if (Parser.scanner.currentToken() == Core.ID) {
+			id = new Id();
+			id.parse();
+			if (Parser.scanner.currentToken() == Core.LBRACE) {
+				Parser.scanner.nextToken();
+				index = new Expr();
+				index.parse();
+				Parser.expectedToken(Core.RBRACE);
+				Parser.scanner.nextToken();
+				
+			}
+		} else if (Parser.scanner.currentToken() == Core.CONST) {
+			constant = Parser.scanner.getConst();
+			Parser.scanner.nextToken();
+		} else if (Parser.scanner.currentToken() == Core.LPAREN) {
+			Parser.scanner.nextToken();
+			expr = new Expr();
+			expr.parse();
+			Parser.expectedToken(Core.RPAREN);
+			Parser.scanner.nextToken();
+		} else {
+			System.out.println("ERROR: Expected ID, CONST, LPAREN, or IN, recieved " + Parser.scanner.currentToken());
+			System.exit(0);
+		}
+	}
+	
+	void print() {
+		if (id != null) {
+			id.print();
+			if (index != null) {
+				System.out.print("[");
+				index.print();
+				System.out.print("]");
+			}
+		} else if (expr != null) {
+			System.out.print("(");
+			expr.print();
+			System.out.print(")");
+		} else {
+			System.out.print(constant);
+		}
+	}
+	
+	int execute() {
+		int value;
+		if (id != null && index != null) {
+			value = Memory.load(id.getId(), index.execute());
+		} else if (id != null) {
+			value = Memory.load(id.getId());
+		} else if (expr != null) {
+			value = expr.execute();
+		} else {
+			value = constant;
+		}
+		return value;
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Id {
+	String identifier;
+	
+	void parse() {
+		Parser.expectedToken(Core.ID);
+		identifier = Parser.scanner.getId();
+		Parser.scanner.nextToken();
+	}
+	
+	void print() {
+		System.out.print(identifier);
+	}
+	
+	String getId() {
+		return identifier;
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+import java.util.*;
+
+class If implements Stmt {
+	Cond cond;
+	StmtSeq ss1;
+	StmtSeq ss2;
+	
+	public void parse() {
+		Parser.scanner.nextToken();
+		cond = new Cond();
+		cond.parse();
+		Parser.expectedToken(Core.THEN);
+		Parser.scanner.nextToken();
+		ss1 = new StmtSeq();
+		ss1.parse();
+		if (Parser.scanner.currentToken() == Core.ELSE) {
+			Parser.scanner.nextToken();
+			ss2 = new StmtSeq();
+			ss2.parse();
+		}
+		Parser.expectedToken(Core.END);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("	");
+		}
+		System.out.print("if ");
+		cond.print();
+		System.out.println(" then");
+		ss1.print(indent+1);
+		if (ss2 != null) {
+			for (int i=0; i<indent; i++) {
+				System.out.print("	");
+			}
+			System.out.println("else");
+			ss2.print(indent+1);
+		}
+		for (int i=0; i<indent; i++) {
+			System.out.print("	");
+		}
+		System.out.println("end");
+	}
+	
+	public void execute() {
+		if (cond.execute()) {
+			Memory.pushScope();
+			ss1.execute();
+			Memory.popScope();
+		} else if (ss2 != null) {
+			Memory.pushScope();
+			ss2.execute();
+			Memory.popScope();
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Input implements Stmt {
+	Id id;
+	
+	public void parse() {
+		Parser.expectedToken(Core.IN);
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.LPAREN);
+		Parser.scanner.nextToken();
+		id = new Id();
+		id.parse();
+		Parser.expectedToken(Core.RPAREN);
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.SEMICOLON);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		System.out.print("in(");
+		id.print();
+		System.out.println(");");
+	}	
+	
+	public void execute() {
+		if (Memory.data.currentToken() == Core.CONST) {
+			Memory.store(id.getId(), Memory.data.getConst());
+			Memory.data.nextToken();
+		} else {
+			System.out.println("ERROR: Data file out of values!");
+			System.exit(1);
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+import java.util.*;
+
+class Loop implements Stmt {
+	Cond cond;
+	StmtSeq ss;
+	
+	public void parse() {
+		Parser.scanner.nextToken();
+		cond = new Cond();;
+		cond.parse();
+		Parser.expectedToken(Core.DO);
+		Parser.scanner.nextToken();
+		ss = new StmtSeq();
+		ss.parse();
+		Parser.expectedToken(Core.END);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		System.out.print("while ");
+		cond.print();
+		System.out.println(" do");
+		ss.print(indent+1);
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		System.out.println("end");
+	}
+	
+	public void execute() {
+		while (cond.execute()) {
+			Memory.pushScope();
+			ss.execute();
+			Memory.popScope();
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Main {
+	public static void main(String[] args) {
+		// Initialize the scanner with the input file
+		Scanner S = new Scanner(args[0]);
+		Parser.scanner = S;
+		
+		Procedure p = new Procedure();
+		
+		p.parse();
+		
+		Memory.data = new Scanner(args[1]);
+		
+		p.execute();
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+import java.util.*;
+
+class Memory {
+	//scanner is stored here as a static field so it is avaiable to the execute method for factor
+	public static Scanner data;
+	
+	// Class and data structures to represent variables
+	static class Value {
+		Core type;
+		int integerVal;
+		int[] arrayVal;
+		Value(Core t) {
+			this.type = t;
+		}
+	}
+	
+	public static HashMap<String, Value> global;
+	public static Stack<HashMap<String, Value>> local;
+	
+	// Helper methods to manage memory
+	
+	// This inializes the global memory structure
+	// Called before executing the DeclSeq
+	public static void initializeGlobal() {
+		global = new HashMap<String, Value>();
+	}
+	
+	// Initializes the local data structure
+	// Called before executing the main StmtSeq
+	public static void initializeLocal() {
+		local = new Stack<HashMap<String, Value>>();
+	}
+	
+	// Pushes a "scope" for if/loop stmts
+	public static void pushScope() {
+		local.push(new HashMap<String, Value>());
+	}
+	
+	// Pops a "scope"
+	public static void popScope() {
+		local.pop();
+	}
+	
+	// Handles decl integer
+	public static void declareInteger(String id) {
+		Value v = new Value(Core.INTEGER);
+		if (local != null) {
+			local.peek().put(id, v);
+		} else {
+			global.put(id, v);
+		}
+	}
+	
+	// Handles decl array
+	public static void declareArray(String id) {
+		Value v = new Value(Core.ARRAY);
+		if (local != null) {
+			local.peek().put(id, v);
+		} else {
+			global.put(id, v);
+		}
+	}
+	
+	// Retrives a value from memory (integer or array at index 0
+	public static int load(String id) {
+		int value;
+		Value v = getLocalOrGlobal(id);
+		if (v.type == Core.INTEGER) {
+			value = v.integerVal;
+		} else {
+			value = v.arrayVal[0];
+		}
+		return value;
+	}
+	
+	// Retrieves a array value from the index
+	public static int load(String id, int index) {
+		Value v = getLocalOrGlobal(id);
+		return v.arrayVal[index];
+	}
+	
+	// Stores a value (integer or array at index 0)
+	public static void store(String id, int value) {
+		Value v = getLocalOrGlobal(id);
+		if (v.type == Core.INTEGER) {
+			v.integerVal = value;
+		} else {
+			v.arrayVal[0] = value;
+		}
+	}
+	
+	// Stores a value at array index
+	public static void store(String id, int index, int value) {
+		Value v = getLocalOrGlobal(id);
+		v.arrayVal[index] = value;
+	}
+	
+	// Handles "new array" assignment
+	public static void allocate(String id, int index) {
+		Value v = getLocalOrGlobal(id);
+		v.arrayVal = new int[index];
+	}
+	
+	// Handles "id := array id" assignment
+	public static void alias(String lhs, String rhs) {
+		Value v1 = getLocalOrGlobal(lhs);
+		Value v2 = getLocalOrGlobal(rhs);
+		v1.arrayVal = v2.arrayVal;
+	}
+	
+	// Looks up value of the variables, searches local then global
+	private static Value getLocalOrGlobal(String id) {
+		Value result;
+		if (local.size() > 0) {
+			if (local.peek().containsKey(id)) {
+				result = local.peek().get(id);
+			} else {
+				HashMap<String, Value> temp = local.pop();
+				result = getLocalOrGlobal(id);
+				local.push(temp);
+			}
+		} else {
+			result = global.get(id);
+		}
+		return result;
+	}
+
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Output implements Stmt {
+	Expr expr;
+	
+	public void parse() {
+		Parser.expectedToken(Core.OUT);
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.LPAREN);
+		Parser.scanner.nextToken();
+		expr = new Expr();
+		expr.parse();
+		Parser.expectedToken(Core.RPAREN);
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.SEMICOLON);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		System.out.print("out(");
+		expr.print();
+		System.out.println(");");
+	}
+	
+	public void execute() {
+		System.out.println(expr.execute());
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+import java.util.*;
+
+class Parser {
+	//scanner is stored here as a static field so it is avaiable to the parse method
+	public static Scanner scanner;
+	
+	//helper method for handling error messages, used by the parse methods
+	static void expectedToken(Core expected) {
+		if (scanner.currentToken() != expected) {
+			System.out.println("ERROR: Expected " + expected + ", recieved " + scanner.currentToken());
+			System.exit(0);
+		}
+	}
+
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+import java.util.*;
+
+class Procedure {
+	String name;
+	DeclSeq ds;
+	StmtSeq ss;
+	
+	void parse() {
+		Parser.expectedToken(Core.PROCEDURE);
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.ID);
+		name = Parser.scanner.getId();
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.IS);
+		Parser.scanner.nextToken();
+		if (Parser.scanner.currentToken() != Core.BEGIN) {
+			ds = new DeclSeq();
+			ds.parse();
+		}
+		Parser.expectedToken(Core.BEGIN);
+		Parser.scanner.nextToken();
+		ss = new StmtSeq();
+		ss.parse();
+		Parser.expectedToken(Core.END);
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.EOS);
+	}
+	
+	void print() {
+		System.out.println("procedure " + name + " is");
+		if (ds != null) {
+			ds.print(1);
+		}
+		System.out.println("begin ");
+		ss.print(1);
+		System.out.println("end");
+	}
+	
+	void execute() {
+		if (ds != null) {
+			Memory.initializeGlobal();
+			ds.execute();
+		}
+		Memory.initializeLocal();
+		Memory.pushScope();
+		ss.execute();
+		Memory.popScope();
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+class Scanner {
+    String id = "[a-zA-Z][a-zA-Z0-9]*";
+    String constant = "[0-9]|[1-9][0-9]*";
+    BufferedReader in;
+    StringBuilder token;
+    Core t;
+
+    // Initialize the scanner
+    Scanner(String filename) {
+        try {
+            this.in = new BufferedReader(new FileReader(filename));
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: File not found");
+        }
+        this.t = this.nextToken();
+    }
+
+    // Advance to the next token
+    public Core nextToken() {
+        try {
+            int c = this.in.read();
+            // Skip all the white space
+            while (Character.isWhitespace(c) && c != -1) {
+                c = this.in.read();
+            }
+            // Handle the case of end of stream
+            if (c == -1) {
+                this.t = Core.EOS;
+            } else {
+                switch ((char) c) {
+                    // Handle cases of all the special symbols with one character
+                    case '+':
+                        this.t = Core.ADD;
+                        break;
+
+                    case '-':
+                        this.t = Core.SUBTRACT;
+                        break;
+
+                    case '*':
+                        this.t = Core.MULTIPLY;
+                        break;
+
+                    case '/':
+                        this.t = Core.DIVIDE;
+                        break;
+						
+					case '=':
+                        this.t = Core.EQUAL;
+                        break;
+
+                    case '<':
+                        this.t = Core.LESS;
+                        break;
+						
+					case ';':
+                        this.t = Core.SEMICOLON;
+                        break;
+
+                    case '.':
+                        this.t = Core.PERIOD;
+                        break;
+
+                    case ',':
+                        this.t = Core.COMMA;
+                        break;
+
+                    case '(':
+                        this.t = Core.LPAREN;
+                        break;
+						
+					case ')':
+                        this.t = Core.RPAREN;
+                        break;
+						
+					case '[':
+                        this.t = Core.LBRACE;
+                        break;
+						
+					case ']':
+                        this.t = Core.RBRACE;
+                        break;
+
+                    // Handle cases of all the special symbols with one or more characters
+					case ':': {
+                        this.in.mark(1);
+                        int nextChar = this.in.read();
+                        if ((char) nextChar == '=') {
+                            this.t = Core.ASSIGN;
+                        } else {
+                            this.in.reset();
+                            this.t = Core.COLON;
+                        }
+                        break;
+                    }
+
+					// Handle case of ID, CONST, or keyword
+                    default: {
+                        boolean continued = true;
+                        this.token = new StringBuilder();
+                        // if the first character is digit, stop until we hit something non-digit
+                        if (Character.isDigit((char) c)) {
+                            while (continued) {
+                                this.token.append((char) c);
+                                this.in.mark(1);
+                                c = this.in.read();
+                                continued = c != -1
+                                        && Character.isDigit((char) c);
+                                if (!continued) {
+                                    this.in.reset();
+                                }
+                            }
+                        }
+                        // if the first character is letter, stop until we hit something non-letter and non-digit
+                        else if (Character.isLetter((char) c)) {
+                            while (continued) {
+                                this.token.append((char) c);
+                                this.in.mark(1);
+                                c = this.in.read();
+                                continued = c != -1
+                                        && Character.isLetterOrDigit((char) c);
+                                if (!continued) {
+                                    this.in.reset();
+                                }
+                            }
+                        }
+                        // if the first character is not letter, digit, or any special symbol above, stop reading
+                        else {
+                            this.token.append((char) c);
+                        }
+
+                        switch (this.token.toString()) {
+                            // Handle cases of all the keywords
+                            case "and":
+                                this.t = Core.AND;
+                                break;
+
+                            case "begin":
+                                this.t = Core.BEGIN;
+                                break;
+
+                            case "do":
+                                this.t = Core.DO;
+                                break;
+								
+							case "else":
+                                this.t = Core.ELSE;
+                                break;
+								
+                            case "end":
+                                this.t = Core.END;
+                                break;
+								
+                            case "if":
+                                this.t = Core.IF;
+                                break;
+								
+                            case "in":
+                                this.t = Core.IN;
+                                break;
+							
+                            case "integer":
+                                this.t = Core.INTEGER;
+                                break;
+
+                            case "is":
+                                this.t = Core.IS;
+                                break;
+
+                            case "new":
+                                this.t = Core.NEW;
+                                break;
+
+                            case "not":
+                                this.t = Core.NOT;
+                                break;
+
+                            case "or":
+                                this.t = Core.OR;
+                                break;
+								
+							case "out":
+                                this.t = Core.OUT;
+                                break;
+
+                            case "procedure":
+                                this.t = Core.PROCEDURE;
+                                break;
+								
+							case "array":
+                                this.t = Core.ARRAY;
+                                break;
+
+                            case "then":
+                                this.t = Core.THEN;
+                                break;
+
+                            case "while":
+                                this.t = Core.WHILE;
+                                break;
+
+                            default: {
+                                // Handle the case of identifier
+                                if (this.token.toString().matches(this.id)) {
+                                    this.t = Core.ID;
+
+                                }
+                                // Handle the case of constant less than 256
+                                else if (this.token.toString()
+                                        .matches(this.constant)
+                                        && Integer.parseInt(
+                                                this.token.toString()) < 100003) {
+                                    this.t = Core.CONST;
+                                }
+                                // Handle cases of all the invalid input including invalid symbols, leading zeros, identifier with digit 0, constant greater than 255 and etc.
+                                else {
+                                    throw new Exception();
+                                }
+                                break;
+                            }
+
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR: Invalid input " + this.token.toString());
+            this.t = Core.ERROR;
+        }
+		return this.t;
+    }
+
+    // Return the current token
+    public Core currentToken() {
+        return this.t;
+    }
+
+    public String getId() {
+        return this.token.toString();
+    }
+
+    public int getConst() {
+        return Integer.parseInt(this.token.toString());
+    }
+
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+//Stmt is an interface so we can take advantage of some polymorphism in StmtSeq
+interface Stmt {
+	void parse();
+	void print(int indent);
+	void execute();
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class StmtSeq {
+	Stmt stmt;
+	StmtSeq ss;
+	
+	void parse() {
+		if (Parser.scanner.currentToken() == Core.ID) {
+			stmt = new Assign();
+		} else if (Parser.scanner.currentToken() == Core.OUT) {
+			stmt = new Output();
+		}  else if (Parser.scanner.currentToken() == Core.IN) {
+			stmt = new Input();
+		}  else if (Parser.scanner.currentToken() == Core.IF) {
+			stmt = new If();
+		} else if (Parser.scanner.currentToken() == Core.WHILE) {
+			stmt = new Loop();
+		}  else if (Parser.scanner.currentToken() == Core.INTEGER || Parser.scanner.currentToken() == Core.ARRAY) {
+			stmt = new Decl();
+		} else {
+			System.out.println("ERROR: Bad start to statement: " + Parser.scanner.currentToken());
+			System.exit(0);
+		}
+		stmt.parse();
+		if (Parser.scanner.currentToken() != Core.END && Parser.scanner.currentToken() != Core.ELSE) {
+			ss = new StmtSeq();
+			ss.parse();
+		}
+	}
+			
+	void print(int indent) {
+		stmt.print(indent);
+		if (ss != null) {
+			ss.print(indent);
+		}
+	}
+	
+	void execute() {
+		stmt.execute();
+		if (ss != null) {
+			ss.execute();
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Term {
+	Factor factor;
+	Term term;
+	int option;
+	
+	void parse() {
+		factor  = new Factor();
+		factor.parse();
+		if (Parser.scanner.currentToken() == Core.MULTIPLY) {
+			option = 1;
+		} else if (Parser.scanner.currentToken() == Core.DIVIDE) {
+			option = 2;
+		}
+		if (option != 0) {
+			Parser.scanner.nextToken();
+			term = new Term();
+			term.parse();
+		}						
+	}
+	
+	void print() {
+		factor.print();
+		if (option == 1) {
+			System.out.print("*");
+			term.print();
+		} else if (option == 2) {
+			System.out.print("/");
+			term.print();
+		}
+	}
+	
+	int execute() {
+		int value = factor.execute();
+		if (option == 1) {
+			value *= term.execute();
+		} else if (option == 2) {
+			int denom = term.execute();
+			if (denom == 0) {
+				System.out.println("ERROR: Division by zero!");
+				System.exit(1);
+			}
+			value /= denom;
+		}
+		return value;
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+#!/bin/bash
+
+runner=$1
+
+echo "Attempting to compile java code..."
+javac *.java
+runner="java Main"
+
+score=0
+error=0
+
+for value in {1..30}
+do
+	echo ""
+	echo "Running ${value}.code"
+	timeout 5 ${runner} Correct/${value}.code Correct/${value}.data > Correct/${value}.student
+	echo "Running diff with ${value}.expected"
+	grep -o '[[:digit:]]\+' Correct/${value}.student > temp1
+	grep -o '[[:digit:]]\+' Correct/${value}.expected > temp2
+	if cmp -s "temp1" "temp2"; then
+		echo "Print looks good"
+		score=$(($score + 1))
+	else
+		echo "Student output and expected output are different"
+	fi
+done
+
+rm temp1
+rm temp2
+
+echo "Running error cases:"
+echo ""
+echo "Running 01.error:"
+echo ""
+echo ""
+timeout 5 ${runner} Error/01.code Error/01.data
+echo ""
+echo ""
+read -n 1 -p "Error is .data file not having enough values. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+echo ""
+echo "Running 02.error:"
+echo ""
+echo ""
+timeout 5 ${runner} Error/02.code Error/02.data
+echo ""
+echo ""
+read -n 1 -p "Error is assignment to null record variable. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+echo ""
+echo "Running 03.error:"
+echo ""
+echo ""
+timeout 5 ${runner} Error/03.code Error/03.data
+echo ""
+echo ""
+read -n 1 -p "Error is accessing outside of array bounds. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+echo ""
+echo "Running 04.error:"
+echo ""
+echo ""
+timeout 5 ${runner} Error/04.code Error/04.data
+echo ""
+echo ""
+read -n 1 -p "Error is division by 0. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+
+echo ""
+echo "Correct cases score out of 30:"
+echo $score
+echo "Error cases score out of 4:"
+echo $error
+echo ""
+
+echo "Done!"
+
