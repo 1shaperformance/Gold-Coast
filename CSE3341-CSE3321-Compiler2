@@ -1,0 +1,1567 @@
+procedure test1 is
+	integer x;
+begin
+	x:=10;
+end
+
+procedure test2 is
+	integer x;
+begin
+	x:=0-10;
+end
+
+procedure test3 is
+	integer x;
+begin
+	x:=1;
+	x:=x+x*x;
+end
+
+procedure test5 is
+	integer x;
+begin
+	if 1 = 1 then
+		x := 1;
+	else
+		x := 2;
+	end
+	out(x);
+end
+
+procedure test6 is
+begin
+	integer x;
+	integer y;
+	while 1 < 1 do
+		x := 1;
+		y := x;
+	end
+	out(4);
+end
+
+procedure test8 is
+	integer x;
+	integer y;
+	integer z;
+	array a;
+	array b;
+	array c;
+begin
+	in(x);
+	out(4);
+	a:=new integer[3];
+end
+
+procedure test7 is
+	integer x;
+begin
+	in(x);
+end
+
+procedure test9 is
+	integer x;
+begin
+	x := 10;
+	out(x);
+end
+
+procedure test10 is
+	integer x;
+	array a;
+begin
+	x:=1-1-1-1;
+	out(x);
+	a[2]:=a[1];
+end
+
+procedure test11 is
+	integer x;
+begin
+	x:=1*2*3*4;
+	out(x);
+end
+
+procedure test12 is
+	integer x;
+	integer y;
+begin
+	x := 1;
+	y := 2;
+	out(x);
+	out(y);
+end
+
+procedure test13 is
+	integer x;
+	integer y;
+	integer z;
+begin
+	x := 1;
+	y := 10;
+	z := 100;
+	while not x = y do
+		x := z - x;
+		while 1 < z do
+			z := z-1;
+			x := y;
+		end
+	end
+	out(x);
+end
+
+procedure test13 is
+	integer x;
+	integer y;
+	integer z;
+begin
+	x := 1;
+	y := 10;
+	z := 100;
+	while not x = y do
+		x := z - x;
+		while 1 < z do
+			z := z-1;
+			x := y;
+		end
+	end
+	out(x);
+end
+
+procedure test14 is
+	integer x;
+	integer y;
+begin
+	x := 10;
+	y := x;
+	if x=y then
+		integer z;
+		z := x + y;
+		out(z);
+	end
+	out(y);
+end
+
+procedure test15 is
+	integer x;
+	integer y;
+begin
+	x := 1;
+	y := 1;
+	if x=y then
+		x:=0;
+		if x<y then
+			x := 10;
+		end
+	else
+		if x<y then
+			x := 5;
+		end
+	end
+	out(x);
+end
+
+procedure test16 is
+	integer x;
+	integer y;
+	integer z;
+begin
+	x := 5;
+	y := 10;
+	z := 100;
+	while not x=0 do
+		x := x-1;
+		while not y=100 do
+			y := y+1;
+			while 0 < z do
+				z := z-1;
+			end
+		end
+		out(x);
+	end
+	out(x);
+end
+
+procedure test17 is
+	integer x;
+	integer y;
+	integer z;
+begin
+	x := 5;
+	y := 10;
+	z := x * y + 5;
+	out(z);
+end
+
+procedure test18 is
+	integer x;
+	integer y;
+	integer z;
+begin
+	x := 5;
+	y := 10;
+	z := x - y - 5 - 5;
+	out(z);
+end
+
+procedure test20 is
+	integer x;
+	integer y;
+	integer z;
+begin
+	x := 5;
+	y := 10;
+	z := x - y * 5 - 5;
+	out(z);
+end
+
+procedure test19 is
+	integer x;
+	integer y;
+	integer z;
+begin
+	x := 5;
+	y := 10;
+	z := ((x - y) - 5) - 5;
+	out(z);
+end
+
+procedure test21 is
+	integer x;
+	integer y;
+	integer z;
+begin
+	x := 5;
+	y := 2;
+	z := x - y * 5 - 5;
+	integer a;
+	integer b;
+	integer c;
+	a := z;
+	b := z;
+	c := x + y - z * (a * b);
+	out(c);
+end
+
+procedure test22 is
+	integer x;
+	integer y;
+	integer z;
+begin
+	x := 5;
+	y := 10;
+	if x < y then
+		while (0 - 10) < x do
+			x := x - 1;
+		end
+	end
+	out(x);
+end
+
+procedure test23 is
+	integer x;
+	integer y;
+	integer z;
+	integer a;
+	integer b;
+	integer c;
+begin
+	x := 5;
+	y := 10;
+	if not x < y then
+		while (0 - 10) < x do
+			x:=x - 1;
+		end
+	else
+		while y < 15 do
+			y:=y+2;
+		end
+	end
+	out(y);
+end
+
+procedure test24 is
+	integer x;
+	integer y;
+	integer z;
+begin
+	x := 5;
+	y := 10;
+	while not x = y do
+		if x < y then
+			x := x + 2;
+		end
+		if not x < y then
+			y := y+1;
+		end
+	end
+	out(x);
+	out(y);
+end
+
+procedure test25 is
+	integer x;
+	integer n;
+begin
+	n := 5;
+	x := 4;
+	while not x=0 do
+		n := n*x;
+		x := x-1;
+		out(n);
+	end
+end
+
+procedure test26 is
+	integer x;
+	integer n;
+begin
+	x := 4;
+	while not x=0 do
+		in(n);
+		x := x-1;
+		out(n);
+	end
+end
+
+procedure err01 is
+	integer x;
+begin
+	x:=10+10+;
+end
+
+procedure err02 is
+	integer x;
+begin
+	if x=x then
+		array y;
+		out(x);
+	end
+	x:=y;
+end
+
+procedure err03 is
+	integer x;
+	integer x;
+begin
+	x:=1;
+	x:=x+x*x;
+end
+
+procedure err04 is
+	integer x;
+begin
+	while 1 = 1 do
+		x := 10;
+	else
+end
+
+procedure err05 is
+	integer x;
+	array y;
+begin
+	if 1=1 then
+		x := new integer[2];
+	else
+		y := new integer[2];
+	end
+end
+
+procedure err06 is
+	integer x;
+begin
+	if 1 < 1 do
+		x = 1;
+	end
+end
+
+procedure err07 is
+	integer x;
+begin
+	in(x);
+	x=10;
+end
+
+procedure test08 is
+	integer x;
+begin
+	x[2] := 10;
+end
+
+procedure err1 is
+	integer x;
+begin
+	x := 10;
+	out(x);
+end end
+
+procedure err10 is
+	integer x;
+begin
+	x := 1 + 2);
+end
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Assign implements Stmt {
+	// type is
+	// 0 if id := <expr> assignment
+	// 1 if id[<expr>] := <expr> assignment
+	// 2 if "new" assignment
+	// 3 if "array" assignment
+	int type;
+	// assignTo is the id on the LHS of assignment
+	Id assignTo;
+	// assignFrom is the id on RHS of "array" assignment
+	Id assignFrom;
+	// Two possible expressions in an assignment
+	Expr index;
+	Expr expr;
+	
+	public void parse() {
+		type = 0;
+		assignTo = new Id();
+		assignTo.parse();
+		if (Parser.scanner.currentToken() == Core.LBRACE) {
+			type = 1;
+			Parser.scanner.nextToken();
+			index = new Expr();
+			index.parse();
+			Parser.expectedToken(Core.RBRACE);
+			Parser.scanner.nextToken();
+		}
+		Parser.expectedToken(Core.ASSIGN);
+		Parser.scanner.nextToken();
+		if (Parser.scanner.currentToken() == Core.NEW) {
+			type = 2;
+			Parser.scanner.nextToken();
+			Parser.expectedToken(Core.INTEGER);
+			Parser.scanner.nextToken();
+			Parser.expectedToken(Core.LBRACE);
+			Parser.scanner.nextToken();
+			index = new Expr();
+			index.parse();
+			Parser.expectedToken(Core.RBRACE);
+			Parser.scanner.nextToken();
+		} else if (Parser.scanner.currentToken() == Core.ARRAY) {
+			type = 3;
+			Parser.scanner.nextToken();
+			assignFrom = new Id();
+			assignFrom.parse();
+		} else {
+			expr = new Expr();
+			expr.parse();
+		}
+		Parser.expectedToken(Core.SEMICOLON);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		assignTo.print();
+		if (type == 1) {
+			System.out.print("[");
+			index.print();
+			System.out.print("]");
+		}
+		System.out.print(":=");
+		if (type == 0 || type == 1) {
+			expr.print();
+		} else if (type == 2) {
+			System.out.print("new integer[");
+			index.print();
+			System.out.print("]");
+		} else if (type == 3) {
+			System.out.print("array ");
+			assignFrom.print();
+		}
+		System.out.println(";");
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Cmpr {
+	Expr expr1;
+	Expr expr2;
+	int option;
+	
+	void parse() {
+		expr1 = new Expr();
+		expr1.parse();
+		if (Parser.scanner.currentToken() == Core.EQUAL) {
+			option = 0;
+		} else if (Parser.scanner.currentToken() == Core.LESS) {
+			option = 1;
+		} else {
+			System.out.println("ERROR: Expected EQUAL or LESS, recieved " + Parser.scanner.currentToken());
+			System.exit(0);
+		}
+		Parser.scanner.nextToken();
+		expr2 = new Expr();
+		expr2.parse();
+	}
+	
+	void print() {
+		expr1.print();
+		switch(option) {
+			case 0:
+				System.out.print("=");
+				break;
+			case 1:
+				System.out.print("<");
+				break;
+		}
+		expr2.print();
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Cond {
+	Cmpr cmpr;
+	Cond cond;
+	int option;
+	
+	void parse() {
+		option = 0;
+		if (Parser.scanner.currentToken() == Core.NOT){
+			option = 1;
+			Parser.scanner.nextToken();
+			cond = new Cond();
+			cond.parse();
+		} else {
+			cmpr = new Cmpr();
+			cmpr.parse();
+			if (Parser.scanner.currentToken() == Core.OR) {
+				option = 2;
+				Parser.scanner.nextToken();
+				cond = new Cond();
+				cond.parse();
+			} else if (Parser.scanner.currentToken() == Core.AND) {
+				option = 3;
+				Parser.scanner.nextToken();
+				cond = new Cond();
+				cond.parse();
+			}
+		}
+	}
+	
+	void print() {
+		if (cmpr == null) {
+			System.out.print("not ");
+			cond.print();
+		} else {
+			cmpr.print();
+			if (cond != null) {
+				if (option == 2) System.out.print(" or ");
+				if (option == 2) System.out.print(" and ");
+				cond.print();
+			}
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+// This enum serves as our tokens
+enum Core {
+    // Keywords
+    PROCEDURE,
+    BEGIN,
+    IS,
+    END,
+    IF,
+	ELSE,
+    IN,
+	INTEGER,
+	RETURN,
+    DO,
+    NEW,
+    NOT,
+	AND,
+    OR,
+    OUT,
+    ARRAY,
+    THEN,
+    WHILE,
+    // Symbols
+    ADD,
+    SUBTRACT,
+    MULTIPLY,
+    DIVIDE,
+    ASSIGN,
+    EQUAL,
+    LESS,
+    COLON,
+    SEMICOLON,
+    PERIOD,
+	COMMA,
+    LPAREN,
+    RPAREN,
+    LBRACE,
+    RBRACE,
+    // Others
+    CONST,
+    ID,
+    EOS,
+    ERROR
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Decl implements Stmt {
+	DeclInteger declInt;
+	DeclArray declArr;
+	
+	public void parse() {
+		if (Parser.scanner.currentToken() == Core.INTEGER) {
+			declInt = new DeclInteger();
+			declInt.parse();
+		} else {
+			declArr = new DeclArray();
+			declArr.parse();
+		}
+	}
+	
+	public void print(int indent) {
+		if (declInt != null) {
+			declInt.print(indent);
+		} else {
+			declArr.print(indent);
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class DeclArray {
+	Id id;
+	
+	public void parse() {
+		Parser.expectedToken(Core.ARRAY);
+		Parser.scanner.nextToken();
+		id = new Id();
+		id.parse();
+		Parser.expectedToken(Core.SEMICOLON);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		System.out.print("array ");
+		id.print();
+		System.out.println(";");
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class DeclInteger {
+	Id id;
+	
+	public void parse() {
+		Parser.expectedToken(Core.INTEGER);
+		Parser.scanner.nextToken();
+		id = new Id();
+		id.parse();
+		Parser.expectedToken(Core.SEMICOLON);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		System.out.print("integer ");
+		id.print();
+		System.out.println(";");
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class DeclSeq {
+	Decl decl;
+	DeclSeq ds;
+	
+	void parse() {
+		decl = new Decl();
+		decl.parse();
+		if (Parser.scanner.currentToken() != Core.BEGIN) {
+			ds = new DeclSeq();
+			ds.parse();
+		}
+	}
+	
+	void print(int indent) {
+		decl.print(indent);
+		if (ds != null) {
+			ds.print(indent);
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Expr {
+	Term term;
+	Expr expr;
+	int option;
+	
+	void parse() {
+		term  = new Term();
+		term.parse();
+		if (Parser.scanner.currentToken() == Core.ADD) {
+			option = 1;
+		} else if (Parser.scanner.currentToken() == Core.SUBTRACT) {
+			option = 2;
+		}
+		if (option != 0) {
+			Parser.scanner.nextToken();
+			expr = new Expr();
+			expr.parse();
+		}						
+	}
+	
+	void print() {
+		term.print();
+		if (option == 1) {
+			System.out.print("+");
+			expr.print();
+		} else if (option == 2) {
+			System.out.print("-");
+			expr.print();
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Factor {
+	Id id;
+	Expr index;
+	int constant;
+	Expr expr;
+	
+	void parse() {
+		if (Parser.scanner.currentToken() == Core.ID) {
+			id = new Id();
+			id.parse();
+			if (Parser.scanner.currentToken() == Core.LBRACE) {
+				Parser.scanner.nextToken();
+				index = new Expr();
+				index.parse();
+				Parser.expectedToken(Core.RBRACE);
+				Parser.scanner.nextToken();
+				
+			}
+		} else if (Parser.scanner.currentToken() == Core.CONST) {
+			constant = Parser.scanner.getConst();
+			Parser.scanner.nextToken();
+		} else if (Parser.scanner.currentToken() == Core.LPAREN) {
+			Parser.scanner.nextToken();
+			expr = new Expr();
+			expr.parse();
+			Parser.expectedToken(Core.RPAREN);
+			Parser.scanner.nextToken();
+		} else {
+			System.out.println("ERROR: Expected ID, CONST, LPAREN, or IN, recieved " + Parser.scanner.currentToken());
+			System.exit(0);
+		}
+	}
+	
+	void print() {
+		if (id != null) {
+			id.print();
+			if (index != null) {
+				System.out.print("[");
+				index.print();
+				System.out.print("]");
+			}
+		} else if (expr != null) {
+			System.out.print("(");
+			expr.print();
+			System.out.print(")");
+		} else {
+			System.out.print(constant);
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Id {
+	String identifier;
+	
+	void parse() {
+		Parser.expectedToken(Core.ID);
+		identifier = Parser.scanner.getId();
+		Parser.scanner.nextToken();
+	}
+	
+	void print() {
+		System.out.print(identifier);
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Id {
+	String identifier;
+	
+	void parse() {
+		Parser.expectedToken(Core.ID);
+		identifier = Parser.scanner.getId();
+		Parser.scanner.nextToken();
+	}
+	
+	void print() {
+		System.out.print(identifier);
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+import java.util.*;
+
+class If implements Stmt {
+	Cond cond;
+	StmtSeq ss1;
+	StmtSeq ss2;
+	
+	public void parse() {
+		Parser.scanner.nextToken();
+		cond = new Cond();;
+		cond.parse();
+		Parser.expectedToken(Core.THEN);
+		Parser.scanner.nextToken();
+		ss1 = new StmtSeq();
+		ss1.parse();
+		if (Parser.scanner.currentToken() == Core.ELSE) {
+			Parser.scanner.nextToken();
+			ss2 = new StmtSeq();
+			ss2.parse();
+		}
+		Parser.expectedToken(Core.END);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("	");
+		}
+		System.out.print("if ");
+		cond.print();
+		System.out.println(" then");
+		ss1.print(indent+1);
+		if (ss2 != null) {
+			for (int i=0; i<indent; i++) {
+				System.out.print("	");
+			}
+			System.out.println("else");
+			ss2.print(indent+1);
+		}
+		for (int i=0; i<indent; i++) {
+			System.out.print("	");
+		}
+		System.out.println("end");
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Input implements Stmt {
+	Id id;
+	
+	public void parse() {
+		Parser.expectedToken(Core.IN);
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.LPAREN);
+		Parser.scanner.nextToken();
+		id = new Id();
+		id.parse();
+		Parser.expectedToken(Core.RPAREN);
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.SEMICOLON);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		System.out.print("in(");
+		id.print();
+		System.out.println(");");
+	}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+import java.util.*;
+
+class Loop implements Stmt {
+	Cond cond;
+	StmtSeq ss;
+	
+	public void parse() {
+		Parser.scanner.nextToken();
+		cond = new Cond();;
+		cond.parse();
+		Parser.expectedToken(Core.DO);
+		Parser.scanner.nextToken();
+		ss = new StmtSeq();
+		ss.parse();
+		Parser.expectedToken(Core.END);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		System.out.print("while ");
+		cond.print();
+		System.out.println(" do");
+		ss.print(indent+1);
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		System.out.println("end");
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Main {
+	public static void main(String[] args) {
+		// Initialize the scanner with the input file
+		Scanner S = new Scanner(args[0]);
+		Parser.scanner = S;
+		
+		Procedure p = new Procedure();
+		
+		p.parse();
+		
+		p.print();
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Output implements Stmt {
+	Expr expr;
+	
+	public void parse() {
+		Parser.expectedToken(Core.OUT);
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.LPAREN);
+		Parser.scanner.nextToken();
+		expr = new Expr();
+		expr.parse();
+		Parser.expectedToken(Core.RPAREN);
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.SEMICOLON);
+		Parser.scanner.nextToken();
+	}
+	
+	public void print(int indent) {
+		for (int i=0; i<indent; i++) {
+			System.out.print("\t");
+		}
+		System.out.print("out(");
+		expr.print();
+		System.out.println(");");
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+import java.util.*;
+
+class Parser {
+	//scanner is stored here as a static field so it is avaiable to the parse method
+	public static Scanner scanner;
+	
+	//helper method for handling error messages, used by the parse methods
+	static void expectedToken(Core expected) {
+		if (scanner.currentToken() != expected) {
+			System.out.println("ERROR: Expected " + expected + ", recieved " + scanner.currentToken());
+			System.exit(0);
+		}
+	}
+
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+import java.util.*;
+
+class Procedure {
+	String name;
+	DeclSeq ds;
+	StmtSeq ss;
+	
+	void parse() {
+		Parser.expectedToken(Core.PROCEDURE);
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.ID);
+		name = Parser.scanner.getId();
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.IS);
+		Parser.scanner.nextToken();
+		if (Parser.scanner.currentToken() != Core.BEGIN) {
+			ds = new DeclSeq();
+			ds.parse();
+		}
+		Parser.expectedToken(Core.BEGIN);
+		Parser.scanner.nextToken();
+		ss = new StmtSeq();
+		ss.parse();
+		Parser.expectedToken(Core.END);
+		Parser.scanner.nextToken();
+		Parser.expectedToken(Core.EOS);
+	}
+	
+	void print() {
+		System.out.println("procedure " + name + " is");
+		if (ds != null) {
+			ds.print(1);
+		}
+		System.out.println("begin ");
+		ss.print(1);
+		System.out.println("end");
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+class Scanner {
+    String id = "[a-zA-Z][a-zA-Z0-9]*";
+    String constant = "[0-9]|[1-9][0-9]*";
+    BufferedReader in;
+    StringBuilder token;
+    Core t;
+
+    // Initialize the scanner
+    Scanner(String filename) {
+        try {
+            this.in = new BufferedReader(new FileReader(filename));
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: File not found");
+        }
+        this.t = this.nextToken();
+    }
+
+    // Advance to the next token
+    public Core nextToken() {
+        try {
+            int c = this.in.read();
+            // Skip all the white space
+            while (Character.isWhitespace(c) && c != -1) {
+                c = this.in.read();
+            }
+            // Handle the case of end of stream
+            if (c == -1) {
+                this.t = Core.EOS;
+            } else {
+                switch ((char) c) {
+                    // Handle cases of all the special symbols with one character
+                    case '+':
+                        this.t = Core.ADD;
+                        break;
+
+                    case '-':
+                        this.t = Core.SUBTRACT;
+                        break;
+
+                    case '*':
+                        this.t = Core.MULTIPLY;
+                        break;
+
+                    case '/':
+                        this.t = Core.DIVIDE;
+                        break;
+						
+					case '=':
+                        this.t = Core.EQUAL;
+                        break;
+
+                    case '<':
+                        this.t = Core.LESS;
+                        break;
+						
+					case ';':
+                        this.t = Core.SEMICOLON;
+                        break;
+
+                    case '.':
+                        this.t = Core.PERIOD;
+                        break;
+
+                    case ',':
+                        this.t = Core.COMMA;
+                        break;
+
+                    case '(':
+                        this.t = Core.LPAREN;
+                        break;
+						
+					case ')':
+                        this.t = Core.RPAREN;
+                        break;
+						
+					case '[':
+                        this.t = Core.LBRACE;
+                        break;
+						
+					case ']':
+                        this.t = Core.RBRACE;
+                        break;
+
+                    // Handle cases of all the special symbols with one or more characters
+					case ':': {
+                        this.in.mark(1);
+                        int nextChar = this.in.read();
+                        if ((char) nextChar == '=') {
+                            this.t = Core.ASSIGN;
+                        } else {
+                            this.in.reset();
+                            this.t = Core.COLON;
+                        }
+                        break;
+                    }
+
+					// Handle case of ID, CONST, or keyword
+                    default: {
+                        boolean continued = true;
+                        this.token = new StringBuilder();
+                        // if the first character is digit, stop until we hit something non-digit
+                        if (Character.isDigit((char) c)) {
+                            while (continued) {
+                                this.token.append((char) c);
+                                this.in.mark(1);
+                                c = this.in.read();
+                                continued = c != -1
+                                        && Character.isDigit((char) c);
+                                if (!continued) {
+                                    this.in.reset();
+                                }
+                            }
+                        }
+                        // if the first character is letter, stop until we hit something non-letter and non-digit
+                        else if (Character.isLetter((char) c)) {
+                            while (continued) {
+                                this.token.append((char) c);
+                                this.in.mark(1);
+                                c = this.in.read();
+                                continued = c != -1
+                                        && Character.isLetterOrDigit((char) c);
+                                if (!continued) {
+                                    this.in.reset();
+                                }
+                            }
+                        }
+                        // if the first character is not letter, digit, or any special symbol above, stop reading
+                        else {
+                            this.token.append((char) c);
+                        }
+
+                        switch (this.token.toString()) {
+                            // Handle cases of all the keywords
+                            case "and":
+                                this.t = Core.AND;
+                                break;
+
+                            case "begin":
+                                this.t = Core.BEGIN;
+                                break;
+
+                            case "do":
+                                this.t = Core.DO;
+                                break;
+								
+							case "else":
+                                this.t = Core.ELSE;
+                                break;
+								
+                            case "end":
+                                this.t = Core.END;
+                                break;
+								
+                            case "if":
+                                this.t = Core.IF;
+                                break;
+								
+                            case "in":
+                                this.t = Core.IN;
+                                break;
+							
+                            case "integer":
+                                this.t = Core.INTEGER;
+                                break;
+
+                            case "is":
+                                this.t = Core.IS;
+                                break;
+
+                            case "new":
+                                this.t = Core.NEW;
+                                break;
+
+                            case "not":
+                                this.t = Core.NOT;
+                                break;
+
+                            case "or":
+                                this.t = Core.OR;
+                                break;
+								
+							case "out":
+                                this.t = Core.OUT;
+                                break;
+
+                            case "procedure":
+                                this.t = Core.PROCEDURE;
+                                break;
+								
+							case "array":
+                                this.t = Core.ARRAY;
+                                break;
+
+                            case "then":
+                                this.t = Core.THEN;
+                                break;
+
+                            case "while":
+                                this.t = Core.WHILE;
+                                break;
+
+                            default: {
+                                // Handle the case of identifier
+                                if (this.token.toString().matches(this.id)) {
+                                    this.t = Core.ID;
+
+                                }
+                                // Handle the case of constant less than 256
+                                else if (this.token.toString()
+                                        .matches(this.constant)
+                                        && Integer.parseInt(
+                                                this.token.toString()) < 100003) {
+                                    this.t = Core.CONST;
+                                }
+                                // Handle cases of all the invalid input including invalid symbols, leading zeros, identifier with digit 0, constant greater than 255 and etc.
+                                else {
+                                    throw new Exception();
+                                }
+                                break;
+                            }
+
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR: Invalid input " + this.token.toString());
+            this.t = Core.ERROR;
+        }
+		return this.t;
+    }
+
+    // Return the current token
+    public Core currentToken() {
+        return this.t;
+    }
+
+    public String getId() {
+        return this.token.toString();
+    }
+
+    public int getConst() {
+        return Integer.parseInt(this.token.toString());
+    }
+
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+//Stmt is an interface so we can take advantage of some polymorphism in StmtSeq
+interface Stmt {
+	void parse();
+	void print(int indent);
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class StmtSeq {
+	Stmt stmt;
+	StmtSeq ss;
+	
+	void parse() {
+		if (Parser.scanner.currentToken() == Core.ID) {
+			stmt = new Assign();
+		} else if (Parser.scanner.currentToken() == Core.OUT) {
+			stmt = new Output();
+		}  else if (Parser.scanner.currentToken() == Core.IN) {
+			stmt = new Input();
+		}  else if (Parser.scanner.currentToken() == Core.IF) {
+			stmt = new If();
+		} else if (Parser.scanner.currentToken() == Core.WHILE) {
+			stmt = new Loop();
+		}  else if (Parser.scanner.currentToken() == Core.INTEGER || Parser.scanner.currentToken() == Core.ARRAY) {
+			stmt = new Decl();
+		} else {
+			System.out.println("ERROR: Bad start to statement: " + Parser.scanner.currentToken());
+			System.exit(0);
+		}
+		stmt.parse();
+		if (Parser.scanner.currentToken() != Core.END && Parser.scanner.currentToken() != Core.ELSE) {
+			ss = new StmtSeq();
+			ss.parse();
+		}
+	}
+			
+	void print(int indent) {
+		stmt.print(indent);
+		if (ss != null) {
+			ss.print(indent);
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Term {
+	Factor factor;
+	Term term;
+	int option;
+	
+	void parse() {
+		factor  = new Factor();
+		factor.parse();
+		if (Parser.scanner.currentToken() == Core.MULTIPLY) {
+			option = 1;
+		} else if (Parser.scanner.currentToken() == Core.DIVIDE) {
+			option = 2;
+		}
+		if (option != 0) {
+			Parser.scanner.nextToken();
+			term = new Term();
+			term.parse();
+		}						
+	}
+	
+	void print() {
+		factor.print();
+		if (option == 1) {
+			System.out.print("*");
+			term.print();
+		} else if (option == 2) {
+			System.out.print("/");
+			term.print();
+		}
+	}
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+#!/bin/bash
+
+runner=$1
+
+echo "Attempting to compile java code..."
+javac *.java
+runner="java Main"
+
+score=0
+error=0
+
+for value in {1..26}
+do
+	echo ""
+	echo "Running ${value}.code"
+	timeout 5 ${runner} Correct/${value}.code > Correct/${value}.student
+	#Check for correct print
+	tr -d '[:space:]' < Correct/${value}.student > temp1
+	tr -d '[:space:]' < Correct/${value}.code > temp2
+	echo "Comparing input and output"
+	if cmp -s "temp1" "temp2"; then
+		echo "Print looks good"
+		score=$(($score + 1))
+	else
+		echo "Student output and expected output are different"
+	fi
+done
+
+rm temp1
+rm temp2
+
+echo ""
+echo "Running error cases:"
+echo ""
+echo "Running 01.error:"
+timeout 5 ${runner} Error/01.code
+echo ""
+echo ""
+read -n 1 -p "Error is extra + in expression. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+echo ""
+echo ""
+echo "Running 02.error:"
+timeout 5 ${runner} Error/02.code
+echo ""
+echo ""
+read -n 1 -p "Error is undeclared variable 'y' being used. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+echo ""
+echo ""
+echo "Running 03.error:"
+timeout 5 ${runner} Error/03.code
+echo ""
+echo ""
+read -n 1 -p "Error is variable 'x' declared twice in the same scope. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+echo ""
+echo ""
+echo "Running 04.error:"
+timeout 5 ${runner} Error/04.code
+echo ""
+echo ""
+read -n 1 -p "Error is while loop ends with 'else' missing. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+echo ""
+echo ""
+echo "Running 05.error:"
+timeout 5 ${runner} Error/05.code
+echo ""
+echo ""
+read -n 1 -p "Error is integer used in 'new record' declaration. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+echo ""
+echo ""
+echo "Running 06.error:"
+timeout 5 ${runner} Error/06.code
+echo ""
+echo ""
+read -n 1 -p "Error is 'do' in if statement. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+echo ""
+echo ""
+echo "Running 07.error:"
+timeout 5 ${runner} Error/07.code
+echo ""
+echo ""
+read -n 1 -p "Error is equals used in assignment statement. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+echo ""
+echo ""
+echo "Running 08.error:"
+timeout 5 ${runner} Error/08.code
+echo ""
+echo ""
+read -n 1 -p "Error is index used with an int variable. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+echo ""
+echo ""
+echo "Running 09.error:"
+timeout 5 ${runner} Error/09.code
+echo ""
+echo ""
+read -n 1 -p "Error is extra tokens after end. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+echo ""
+echo ""
+echo "Running 10.error:"
+timeout 5 ${runner} Error/10.code
+echo ""
+echo ""
+read -n 1 -p "Error is missing left parenthesis in expression. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+
+
+echo ""
+echo ""
+echo "Correct cases score out of 26:"
+echo $score
+echo "Error cases score out of 10:"
+echo $error
+
+echo "Done!"
+
+
