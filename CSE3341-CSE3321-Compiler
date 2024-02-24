@@ -1,0 +1,890 @@
+
+123
+      and procedure array ARRAY
+      (
+        ;
+        :=
+
+        token
+        =
+      )
+3
+while
+
+CONST[123]
+AND
+PROCEDURE
+ARRAY
+ID[ARRAY]
+LPAREN
+SEMICOLON
+ASSIGN
+ID[token]
+EQUAL
+RPAREN
+CONST[3]
+WHILE
+
+
+array int X , Y , XY 	; begin
+
+          X = 0;
+		  
+		  new[10] X;
+
+          end  
+      
+program int X , Y , XY 	; a ( b, c, d) begin a=a+b+c; ;begin
+
+          X = 0;
+		  
+		  output X;
+
+          end  
+      
+and instance
+
+program int X , Y , XY 	;
+
+          input X, Y, XY;
+		  
+		  if not (X = Y)
+		  then
+			if X < Y
+			then
+				output 1;
+			else
+				output 2;
+			;
+		output 3;
+		; 
+		  
+		input X, Y, XY;
+		  
+		  if not (X = Y)
+		  then
+			if X < Y
+			then
+				output 10;
+			else
+				output 20;
+			;
+		output 30;
+		;
+		
+		input X, Y, XY;
+		  
+		  if  not X = Y)
+		  then
+			if X < Y
+			then
+				output 100;
+			else
+				output 200;
+			;
+		output 30;
+		;
+
+		input X, Y, XY;
+		  
+		if X = Y 
+		then
+			output 199;
+		else
+			if  not (X <= Y)
+			then
+				output 29;
+			else
+				output 39;
+			;
+		;
+		
+		
+          end  
+      
+procedure array X , Y , XY 	;
+
+        in X, Y;
+		
+		while (X === 0) begin
+		
+			Y = Y * Y;
+			X = X - 1;
+			
+		;
+		
+		out Y;
+		 
+		
+end  
+      
+procedure begin end
+
+int x, y,z;
+
+int x1, y123y,z9z9z9z;
+
+ARRAY
+ID[int]
+ID[X]
+COMMA
+ID[Y]
+COMMA
+ID[XY]
+SEMICOLON
+BEGIN
+ID[X]
+EQUAL
+CONST[0]
+SEMICOLON
+NEW
+LBRACE
+CONST[10]
+RBRACE
+ID[X]
+SEMICOLON
+END
+
+ID[program]
+ID[int]
+ID[X]
+COMMA
+ID[Y]
+COMMA
+ID[XY]
+SEMICOLON
+ID[a]
+LPAREN
+ID[b]
+COMMA
+ID[c]
+COMMA
+ID[d]
+RPAREN
+BEGIN
+ID[a]
+EQUAL
+ID[a]
+ADD
+ID[b]
+ADD
+ID[c]
+SEMICOLON
+SEMICOLON
+BEGIN
+ID[X]
+EQUAL
+CONST[0]
+SEMICOLON
+ID[output]
+ID[X]
+SEMICOLON
+END
+AND
+ID[instance]
+
+ID[program]
+ID[int]
+ID[X]
+COMMA
+ID[Y]
+COMMA
+ID[XY]
+SEMICOLON
+ID[input]
+ID[X]
+COMMA
+ID[Y]
+COMMA
+ID[XY]
+SEMICOLON
+IF
+NOT
+LPAREN
+ID[X]
+EQUAL
+ID[Y]
+RPAREN
+THEN
+IF
+ID[X]
+LESS
+ID[Y]
+THEN
+ID[output]
+CONST[1]
+SEMICOLON
+ELSE
+ID[output]
+CONST[2]
+SEMICOLON
+SEMICOLON
+ID[output]
+CONST[3]
+SEMICOLON
+SEMICOLON
+ID[input]
+ID[X]
+COMMA
+ID[Y]
+COMMA
+ID[XY]
+SEMICOLON
+IF
+NOT
+LPAREN
+ID[X]
+EQUAL
+ID[Y]
+RPAREN
+THEN
+IF
+ID[X]
+LESS
+ID[Y]
+THEN
+ID[output]
+CONST[10]
+SEMICOLON
+ELSE
+ID[output]
+CONST[20]
+SEMICOLON
+SEMICOLON
+ID[output]
+CONST[30]
+SEMICOLON
+SEMICOLON
+ID[input]
+ID[X]
+COMMA
+ID[Y]
+COMMA
+ID[XY]
+SEMICOLON
+IF
+NOT
+ID[X]
+EQUAL
+ID[Y]
+RPAREN
+THEN
+IF
+ID[X]
+LESS
+ID[Y]
+THEN
+ID[output]
+CONST[100]
+SEMICOLON
+ELSE
+ID[output]
+CONST[200]
+SEMICOLON
+SEMICOLON
+ID[output]
+CONST[30]
+SEMICOLON
+SEMICOLON
+ID[input]
+ID[X]
+COMMA
+ID[Y]
+COMMA
+ID[XY]
+SEMICOLON
+IF
+ID[X]
+EQUAL
+ID[Y]
+THEN
+ID[output]
+CONST[199]
+SEMICOLON
+ELSE
+IF
+NOT
+LPAREN
+ID[X]
+LESS
+EQUAL
+ID[Y]
+RPAREN
+THEN
+ID[output]
+CONST[29]
+SEMICOLON
+ELSE
+ID[output]
+CONST[39]
+SEMICOLON
+SEMICOLON
+SEMICOLON
+END
+
+ID[int]
+ID[x]
+COMMA
+ID[y]
+COMMA
+ID[z]
+SEMICOLON
+
+IF
+LPAREN
+ID[x]
+EQUAL
+EQUAL
+ID[y]
+RPAREN
+THEN
+IN
+ID[x]
+SEMICOLON
+ELSE
+OUT
+ID[x]
+SEMICOLON
+
+while not (x+y = = == z10 * 101 begin test; test : = test1 - test2;  end
+
+pRocedure In oUt iF TheN END BEGIN EnD ref EOS
+
+ID[pRocedure]
+ID[In]
+ID[oUt]
+ID[iF]
+ID[TheN]
+ID[END]
+ID[BEGIN]
+ID[EnD]
+ID[ref]
+ID[EOS]
+
+
+precedure int x, y, z; A (a, b, c) begin a = b < c; begin in x, y, z; A (x, y, z); end
+
+ID[precedure]
+ID[int]
+ID[x]
+COMMA
+ID[y]
+COMMA
+ID[z]
+SEMICOLON
+ID[A]
+LPAREN
+ID[a]
+COMMA
+ID[b]
+COMMA
+ID[c]
+RPAREN
+BEGIN
+ID[a]
+EQUAL
+ID[b]
+LESS
+ID[c]
+SEMICOLON
+BEGIN
+IN
+ID[x]
+COMMA
+ID[y]
+COMMA
+ID[z]
+SEMICOLON
+ID[A]
+LPAREN
+ID[x]
+COMMA
+ID[y]
+COMMA
+ID[z]
+RPAREN
+SEMICOLON
+END
+
+
+program int X Y XY 	;
+
+          begin input X ; Y  := 0 ;
+     
+	 
+
+EOS
+
+                              input XY, Y ; output XY ;
+
+                              Y  ::= Y + XY ; X  := X - 1 ;
+	 
+               while ! (0 < X) begin
+
+                              input XY ; output XY ;
+
+                              Y  := Y + XY ; X  := X - 1 ;
+
+		 ;   
+
+	       output Y ;
+
+          end  
+      
+
+
+program int X  Y  XY 	;
+
+          X = 0;
+		  
+		  output X;
+
+          end  
+      
+what is this doing here?
+
+
+program int X  Y  XY 	;
+
+          input X;
+		  
+		  case x of 1 2 3  1  4 5 6  2 else 3 end;
+		  
+		  
+		  output X$;
+
+          end  
+      
+1000000000
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+// This enum serves as our tokens
+enum Core {
+    // Keywords
+    PROCEDURE,
+    BEGIN,
+    IS,
+    END,
+    IF,
+	ELSE,
+    IN,
+	INTEGER,
+	RETURN,
+    DO,
+    NEW,
+    NOT,
+	AND,
+    OR,
+    OUT,
+    ARRAY,
+    THEN,
+    WHILE,
+    // Symbols
+    ADD,
+    SUBTRACT,
+    MULTIPLY,
+    DIVIDE,
+    ASSIGN,
+    EQUAL,
+    LESS,
+    COLON,
+    SEMICOLON,
+    PERIOD,
+	COMMA,
+    LPAREN,
+    RPAREN,
+    LBRACE,
+    RBRACE,
+    // Others
+    CONST,
+    ID,
+    EOS,
+    ERROR
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+class Main {
+	public static void main(String[] args) {
+		// Initialize the scanner with the input file
+		Scanner S = new Scanner(args[0]);
+
+		// Print the token stream
+		while (S.currentToken() != Core.EOS && S.currentToken() != Core.ERROR) {
+			// Pring the current token, with any extra data needed
+			System.out.print(S.currentToken());
+			if (S.currentToken() == Core.ID) {
+				String value = S.getId();
+				System.out.print("[" + value + "]");
+			} else if (S.currentToken() == Core.CONST) {
+				int value = S.getConst();
+				System.out.print("[" + value + "]");
+			}
+			System.out.print("\n");
+
+			// Advance to the next token
+			S.nextToken();
+		}
+	}
+}
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+class Scanner {
+    String id = "[a-zA-Z][a-zA-Z0-9]*";
+    String constant = "[0-9]|[1-9][0-9]*";
+    BufferedReader in;
+    StringBuilder token;
+    Core t;
+
+    // Initialize the scanner
+    Scanner(String filename) {
+        try {
+            this.in = new BufferedReader(new FileReader(filename));
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: File not found");
+        }
+        this.t = this.nextToken();
+    }
+
+    // Advance to the next token
+    public Core nextToken() {
+        try {
+            int c = this.in.read();
+            // Skip all the white space
+            while (Character.isWhitespace(c) && c != -1) {
+                c = this.in.read();
+            }
+            // Handle the case of end of stream
+            if (c == -1) {
+                this.t = Core.EOS;
+            } else {
+                switch ((char) c) {
+                    // Handle cases of all the special symbols with one character
+                    case '+':
+                        this.t = Core.ADD;
+                        break;
+
+                    case '-':
+                        this.t = Core.SUBTRACT;
+                        break;
+
+                    case '*':
+                        this.t = Core.MULTIPLY;
+                        break;
+
+                    case '/':
+                        this.t = Core.DIVIDE;
+                        break;
+						
+					case '=':
+                        this.t = Core.EQUAL;
+                        break;
+
+                    case '<':
+                        this.t = Core.LESS;
+                        break;
+						
+					case ';':
+                        this.t = Core.SEMICOLON;
+                        break;
+
+                    case '.':
+                        this.t = Core.PERIOD;
+                        break;
+
+                    case ',':
+                        this.t = Core.COMMA;
+                        break;
+
+                    case '(':
+                        this.t = Core.LPAREN;
+                        break;
+						
+					case ')':
+                        this.t = Core.RPAREN;
+                        break;
+						
+					case '[':
+                        this.t = Core.LBRACE;
+                        break;
+						
+					case ']':
+                        this.t = Core.RBRACE;
+                        break;
+
+                    // Handle cases of all the special symbols with one or more characters
+					case ':': {
+                        this.in.mark(1);
+                        int nextChar = this.in.read();
+                        if ((char) nextChar == '=') {
+                            this.t = Core.ASSIGN;
+                        } else {
+                            this.in.reset();
+                            this.t = Core.COLON;
+                        }
+                        break;
+                    }
+
+					// Handle case of ID, CONST, or keyword
+                    default: {
+                        boolean continued = true;
+                        this.token = new StringBuilder();
+                        // if the first character is digit, stop until we hit something non-digit
+                        if (Character.isDigit((char) c)) {
+                            while (continued) {
+                                this.token.append((char) c);
+                                this.in.mark(1);
+                                c = this.in.read();
+                                continued = c != -1
+                                        && Character.isDigit((char) c);
+                                if (!continued) {
+                                    this.in.reset();
+                                }
+                            }
+                        }
+                        // if the first character is letter, stop until we hit something non-letter and non-digit
+                        else if (Character.isLetter((char) c)) {
+                            while (continued) {
+                                this.token.append((char) c);
+                                this.in.mark(1);
+                                c = this.in.read();
+                                continued = c != -1
+                                        && Character.isLetterOrDigit((char) c);
+                                if (!continued) {
+                                    this.in.reset();
+                                }
+                            }
+                        }
+                        // if the first character is not letter, digit, or any special symbol above, stop reading
+                        else {
+                            this.token.append((char) c);
+                        }
+
+                        switch (this.token.toString()) {
+                            // Handle cases of all the keywords
+                            case "and":
+                                this.t = Core.AND;
+                                break;
+
+                            case "begin":
+                                this.t = Core.BEGIN;
+                                break;
+
+                            case "do":
+                                this.t = Core.DO;
+                                break;
+								
+							case "else":
+                                this.t = Core.ELSE;
+                                break;
+								
+                            case "end":
+                                this.t = Core.END;
+                                break;
+								
+                            case "if":
+                                this.t = Core.IF;
+                                break;
+								
+                            case "in":
+                                this.t = Core.IN;
+                                break;
+							
+                            case "integer":
+                                this.t = Core.INTEGER;
+                                break;
+
+                            case "is":
+                                this.t = Core.IS;
+                                break;
+
+                            case "new":
+                                this.t = Core.NEW;
+                                break;
+
+                            case "not":
+                                this.t = Core.NOT;
+                                break;
+
+                            case "or":
+                                this.t = Core.OR;
+                                break;
+								
+							case "out":
+                                this.t = Core.OUT;
+                                break;
+
+                            case "procedure":
+                                this.t = Core.PROCEDURE;
+                                break;
+								
+							case "array":
+                                this.t = Core.ARRAY;
+                                break;
+
+                            case "then":
+                                this.t = Core.THEN;
+                                break;
+
+                            case "while":
+                                this.t = Core.WHILE;
+                                break;
+
+                            default: {
+                                // Handle the case of identifier
+                                if (this.token.toString().matches(this.id)) {
+                                    this.t = Core.ID;
+
+                                }
+                                // Handle the case of constant less than 256
+                                else if (this.token.toString()
+                                        .matches(this.constant)
+                                        && Integer.parseInt(
+                                                this.token.toString()) < 100003) {
+                                    this.t = Core.CONST;
+                                }
+                                // Handle cases of all the invalid input including invalid symbols, leading zeros, identifier with digit 0, constant greater than 255 and etc.
+                                else {
+                                    throw new Exception();
+                                }
+                                break;
+                            }
+
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR: Invalid input " + this.token.toString());
+            this.t = Core.ERROR;
+        }
+		return this.t;
+    }
+
+    // Return the current token
+    public Core currentToken() {
+        return this.t;
+    }
+
+    public String getId() {
+        return this.token.toString();
+    }
+
+    public int getConst() {
+        return Integer.parseInt(this.token.toString());
+    }
+
+}
+
+https://tutorcs.com
+WeChat: cstutorcs
+QQ: 749389476
+Email: tutorcs@163.com
+#!/bin/bash
+
+runner=$1
+
+echo "Attempting to compile java code..."
+javac *.java
+runner="java Main"
+
+score=0
+error=0
+
+for value in {1..13}
+do
+	echo ""
+	echo "Running ${value}.code"
+	timeout 5 ${runner} Correct/${value}.code > Correct/${value}.student
+	echo ""
+	echo "Comparing with ${value}.expected"
+	#Check for correct print
+	tr -d '[:space:]' < Correct/${value}.student > temp1
+	tr -d '[:space:]' < Correct/${value}.expected > temp2
+	echo "Comparing input and output"
+	if cmp -s "temp1" "temp2"; then
+		echo "Print looks good"
+		score=$(($score + 1))
+	else
+		echo "Student output and expected output are different"
+	fi
+done
+
+rm temp1
+rm temp2
+
+echo ""
+echo ""
+
+echo "Running error cases:"
+echo ""
+echo "Running 1.error:"
+echo "----------"
+timeout 5 ${runner} Error/1.code
+echo "----------"
+read -n 1 -p "Error is '!' in file. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+
+echo ""
+
+echo "Running error cases:"
+echo ""
+echo "Running 2.error:"
+echo "----------"
+timeout 5 ${runner} Error/2.code
+echo "----------"
+read -n 1 -p "Error is '?' in file. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+
+echo ""
+
+echo "Running error cases:"
+echo ""
+echo "Running 3.error:"
+echo "----------"
+timeout 5 ${runner} Error/3.code
+echo "----------"
+read -n 1 -p "Error is '$' in file. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+
+echo ""
+
+echo "Running error cases:"
+echo ""
+echo "Running 4.error:"
+echo "----------"
+timeout 5 ${runner} Error/4.code
+echo "----------"
+read -n 1 -p "Error is too large constant in file. Error message related to that? (y/n)" mainmenuinput
+if [ $mainmenuinput = "y" ]; then
+	error=$(($error + 1))
+fi
+
+echo ""
+
+echo "Correct cases score out of 13:"
+echo $score
+echo "Error cases score out of 4:"
+echo $error
+
+
+echo Done!
+
