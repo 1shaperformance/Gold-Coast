@@ -120,5 +120,11 @@ git@gitlab.com:gitlab-org/gitlab-runner.git:
 copilot.content_exclusion_changed
 
 UMSCHALT+Befehlstaste+P (Mac) / STRG+UMSCHALT+P (Windows/Linux).
-Geben Sie Folgendes ein: reload.
+Geben Sie Folgendes ein: reload
+
+
+OLD-NAMESPACE/IMAGE-NAME
+
+
+https://github.com/previousorgname
 
