@@ -1,4 +1,4 @@
-
+de
 com.google.api.ads.dfp.lib.client.AdManagerServiceClient.soapXmlLogger
 
 
@@ -860,3 +860,5 @@ AdManagerSession.Builder builder = new AdManagerSession.Builder()
 new FooThread(builder.build()).start();
 new BarThread(builder.build()).start();
 new BazThread(builder.build()).start();
+
+git clone https://android.googlesource.com/assets/android-studio-ux-assets
