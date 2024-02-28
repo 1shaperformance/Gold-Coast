@@ -862,3 +862,152 @@ new BarThread(builder.build()).start();
 new BazThread(builder.build()).start();
 
 git clone https://android.googlesource.com/assets/android-studio-ux-assets
+
+
+https://blockchainnodeengine.googleapis.com
+
+REST Resource: v1.projects.locations
+
+MethodsgetGET /v1/{name=projects/*/locations/*}
+Gets information about a location.listGET /v1/{name=projects/*}/locations
+Lists information about the supported locations for this service.
+
+REST Resource: v1.projects.locations.blockchainNodes
+
+MethodscreatePOST /v1/{parent=projects/*/locations/*}/blockchainNodes
+Creates a new blockchain node in a given project and location.deleteDELETE /v1/{name=projects/*/locations/*/blockchainNodes/*}
+Deletes a single blockchain node.getGET /v1/{name=projects/*/locations/*/blockchainNodes/*}
+Gets details of a single blockchain node.listGET /v1/{parent=projects/*/locations/*}/blockchainNodes
+Lists blockchain nodes in a given project and location.
+
+REST Resource: v1.projects.locations.operations
+
+MethodscancelPOST /v1/{name=projects/*/locations/*/operations/*}:cancel
+Starts asynchronous cancellation on a long-running operation.deleteDELETE /v1/{name=projects/*/locations/*/operations/*}
+Deletes a long-running operation.getGET /v1/{name=projects/*/locations/*/operations/*}
+Gets the latest state of a long-running operation.listGET /v1/{name=projects/*/locations/*}/operations
+Lists operations that match the specified filter in the request.
+
+War das hilfreich?
+
+Send feedback
+
+Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates.
+
+Last updated 2023-09-02 UTC.
+
+Why Google
+
+Choosing Google Cloud
+
+Trust and security
+
+Open cloud
+
+Multicloud
+
+Global infrastructure
+
+Customers and case studies
+
+Analyst reports
+
+Whitepapers
+
+Blog
+
+Products and pricing
+
+Google Cloud pricing
+
+Google Workspace pricing
+
+See all products
+
+Solutions
+
+Infrastructure modernization
+
+Databases
+
+Application modernization
+
+Smart analytics
+
+Artificial Intelligence
+
+Security
+
+Productivity & work transformation
+
+Industry solutions
+
+DevOps solutions
+
+Small business solutions
+
+See all solutions
+
+Resources
+
+Google Cloud documentation
+
+Google Cloud quickstarts
+
+Google Cloud Marketplace
+
+Learn about cloud computing
+
+Support
+
+Code samples
+
+Cloud Architecture Center
+
+Training
+
+Certifications
+
+Google for Developers
+
+Google Cloud for Startups
+
+System status
+
+Release Notes
+
+Engage
+
+Contact sales
+
+Find a Partner
+
+Become a Partner
+
+Events
+
+Podcasts
+
+Developer Center
+
+Press Corner
+
+Google Cloud on YouTube
+
+Google Cloud Tech on YouTube
+
+Follow on X
+
+Join User Research
+
+We're hiring. Join Google Cloud!
+
+Google Cloud Community
+
+About Google
+
+Privacy
+
+Site terms
+
+Google Cloud terms
