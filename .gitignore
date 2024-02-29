@@ -1273,3 +1273,11 @@ Closing service connection
 After getting referrer information, call the endConnection() method on your InstallReferrerClient instance to close the connection. Closing the connection will help you avoid leaks and performance problems.
 
 For further information, refer to the Play Install Referrer Library Reference.
+
+
+Informationen zur Fehlerbehebung:
+  Hauptkonto: tharsanthavarajah777@gmail.com
+  Ressource: fir-demo-project
+  Fehlerbehebungs-URL: console.cloud.google.com/iam-admin/troubleshooter;permissions=resourcemanager.tagKeys.list;principal=tharsanthavarajah777@gmail.com;resources=%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2Ffir-demo-project/result
+
+Fehlende Berechtigungen: resourcemanager.tagKeys.list
