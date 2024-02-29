@@ -1063,3 +1063,73 @@ Wählen Sie abschließend "Jetzt synchronisieren" aus der Leiste aus, die in der
 Ein Screenshot der Leiste in der IDE, auf der ganz rechts die Schaltfläche „Jetzt synchronisieren“ markiert ist
 5
 App ausführen, um die Installation zu überprüfen
+
+
+dependencies {
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:32.7.3"))
+
+    // Add the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-analytics")
+}
+Durch die Verwendung der Firebase Android BoM verwendet Ihre App immer kompatible Versionen der Firebase Android-Bibliotheken.
+
+(Alternative)
+Fügen Sie Firebase-Bibliotheksabhängigkeiten hinzu
+, ohne
+die Stückliste zu verwenden
+
+Suchen Sie nach einem Kotlin-spezifischen Bibliotheksmodul? Ab Oktober 2023 (Firebase BoM 32.5.0) können sich sowohl Kotlin- als auch Java-Entwickler auf das Hauptbibliotheksmodul verlassen (Einzelheiten finden Sie in den FAQ zu dieser Initiative ).
+Schritt 2 : Fügen Sie das Crashlytics Gradle-Plugin zu Ihrer App hinzu
+Fügen Sie in Ihrer Gradle-Datei auf Stammebene (Projektebene) ( <project>/build.gradle.kts oder <project>/build.gradle ) das Crashlytics Gradle-Plugin zum plugins Block hinzu:
+
+Kotlin
+Groovy
+Verwenden Sie immer noch die buildscript Syntax? Erfahren Sie, wie Sie Firebase-Plugins mithilfe dieser Syntax hinzufügen .
+
+plugins {
+    id("com.android.application") version "7.3.0" apply false
+    // ...
+
+    // Make sure that you have the Google services Gradle plugin dependency
+    id("com.google.gms.google-services") version "4.4.1" apply false
+
+    // Add the dependency for the Crashlytics Gradle plugin
+    id("com.google.firebase.crashlytics") version "2.9.9" apply false
+}
+Fügen Sie in Ihrer Modul-Gradle-Datei (auf App-Ebene) (normalerweise <project>/<app-module>/build.gradle.kts oder <project>/<app-module>/build.gradle ) das Crashlytics Gradle-Plugin hinzu:
+
+Kotlin
+Groovy
+
+plugins {
+  id("com.android.application")
+  // ...
+
+  // Make sure that you have the Google services Gradle plugin
+  id("com.google.gms.google-services")
+
+  // Add the Crashlytics Gradle plugin
+  id("com.google.firebase.crashlytics")
+}
+Schritt 3 : Erzwingen Sie einen Testabsturz, um die Einrichtung abzuschließen
+Um die Einrichtung von Crashlytics abzuschließen und erste Daten im Crashlytics-Dashboard der Firebase-Konsole anzuzeigen, müssen Sie einen Testabsturz erzwingen.
+
+Fügen Sie Ihrer App Code hinzu, mit dem Sie einen Testabsturz erzwingen können.
+
+Sie können den folgenden Code in MainActivity Ihrer App verwenden, um Ihrer App eine Schaltfläche hinzuzufügen, die beim Drücken einen Absturz verursacht. Die Schaltfläche ist mit „Test Crash“ beschriftet.
+
+Kotlin+KTX
+Java
+
+val crashButton = Button(this)
+crashButton.text = "Test Crash"
+crashButton.setOnClickListener {
+   throw RuntimeException("Test Crash") // Force a crash
+}
+
+addContentView(crashButton, ViewGroup.LayoutParams(
+       ViewGroup.LayoutParams.MATCH_PARENT,
+       ViewGroup.LayoutParams.WRAP_CONTENT))
