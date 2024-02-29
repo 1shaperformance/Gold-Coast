@@ -1288,3 +1288,42 @@ Informationen zur Fehlerbehebung:
   Fehlerbehebungs-URL: console.cloud.google.com/iam-admin/troubleshooter;permissions=servicehealth.events.list;principal=tharsanthavarajah777@gmail.com;resources=%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2Ffir-demo-project/result
 
 Fehlende Berechtigungen: servicehealth.events.list
+
+build.gradle-Datei auf Projektebene (<project>/build.gradle):
+buildscript {
+  repositories {
+    // Check that you have the following line (if not, add it):
+  
+    google()  // Google's Maven repository
+  }
+  dependencies {
+    ...
+    // Add this line
+  
+    classpath 'com.google.gms:google-services:4.3.3'
+    ...
+  }
+}
+
+allprojects {
+  ...
+  repositories {
+    // Check that you have the following line (if not, add it):
+  
+    google()  // Google's Maven repository
+  }
+}
+build.gradle-Datei auf App-Ebene (<project>/<app-module>/build.gradle):
+  
+apply plugin: 'com.android.application'
+// Add this line
+  
+apply plugin: 'com.google.gms.google-services'
+
+dependencies {
+  // add the Firebase SDK for Google Analytics
+  
+  implementation 'com.google.firebase:firebase-analytics:17.4.1'
+  // add SDKs for any other desired Firebase products
+  // https://firebase.google.com/docs/android/setup#available-libraries
+}
