@@ -1202,4 +1202,74 @@ crashButton.setOnClickListener {
 
 addContentView(crashButton, ViewGroup.LayoutParams(
        ViewGroup.LayoutParams.MATCH_PARENT,
-       ViewGroup.LayoutParams.WRAP_CONTENT))
+      ViewGroup.LayoutParams.WRAP_CONTENT))
+
+
+
+...
+    implementation "com.android.installreferrer:installreferrer:2.2"
+}
+Connecting to Google Play
+Before you can use the Play Install Referrer API Library, you must establish a connection to the Play Store app using the following steps:
+
+Call the newBuilder() method to create an instance of InstallReferrerClient class.
+Call the startConnection() to establish a connection to Google Play.
+
+The startConnection() method is asynchronous, so you must override InstallReferrerStateListener to receive a callback after startConnection() completes.
+
+Override the onInstallReferrerSetupFinished() method to be notified when the callback completes. This method is called with a response code that you must use to handle the different states. OK indicates that the connection was successful. Each of the other InstallReferrerResponse constants are for different types of errors.
+
+Override the onInstallReferrerServiceDisconnected() method to handle lost connections to Google Play. For example, the Play Install Referrer Library client may lose the connection if the Play Store service is updating in the background. The library client must call the startConnection() method to restart the connection before making further requests.
+
+The following code demonstrates how to start and test a connection to the Play Store app:
+
+Kotlin
+Java
+
+private lateinit var referrerClient: InstallReferrerClient
+
+referrerClient = InstallReferrerClient.newBuilder(this).build()
+referrerClient.startConnection(object : InstallReferrerStateListener {
+
+    override fun onInstallReferrerSetupFinished(responseCode: Int) {
+        when (responseCode) {
+            InstallReferrerResponse.OK -> {
+                // Connection established.
+            }
+            InstallReferrerResponse.FEATURE_NOT_SUPPORTED -> {
+                // API not available on the current Play Store app.
+            }
+            InstallReferrerResponse.SERVICE_UNAVAILABLE -> {
+                // Connection couldn't be established.
+            }
+        }
+    }
+
+    override fun onInstallReferrerServiceDisconnected() {
+        // Try to restart the connection on the next request to
+        // Google Play by calling the startConnection() method.
+    }
+})
+Getting the install referrer
+After you have established a connection to the Play Store app, get the details from the install referrer by completing the following steps:
+
+Use the synchronized getInstallReferrer() method to return an instance of ReferrerDetails.
+
+Use the methods that the ReferrerDetails class provides to get details about the install referrer.
+
+The following code demonstrates how you can access the install referrer information:
+
+Kotlin
+Java
+
+val response: ReferrerDetails = referrerClient.installReferrer
+val referrerUrl: String = response.installReferrer
+val referrerClickTime: Long = response.referrerClickTimestampSeconds
+val appInstallTime: Long = response.installBeginTimestampSeconds
+val instantExperienceLaunched: Boolean = response.googlePlayInstantParam
+Caution: The install referrer information will be available for 90 days and won't change unless the application is reinstalled. To avoid unnecessary API calls in your app, you should invoke the API only once during the first execution after install.
+
+Closing service connection
+After getting referrer information, call the endConnection() method on your InstallReferrerClient instance to close the connection. Closing the connection will help you avoid leaks and performance problems.
+
+For further information, refer to the Play Install Referrer Library Reference.
