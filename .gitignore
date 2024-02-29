@@ -1281,3 +1281,10 @@ Informationen zur Fehlerbehebung:
   Fehlerbehebungs-URL: console.cloud.google.com/iam-admin/troubleshooter;permissions=resourcemanager.tagKeys.list;principal=tharsanthavarajah777@gmail.com;resources=%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2Ffir-demo-project/result
 
 Fehlende Berechtigungen: resourcemanager.tagKeys.list
+
+Informationen zur Fehlerbehebung:
+  Hauptkonto: tharsanthavarajah777@gmail.com
+  Ressource: fir-demo-project
+  Fehlerbehebungs-URL: console.cloud.google.com/iam-admin/troubleshooter;permissions=servicehealth.events.list;principal=tharsanthavarajah777@gmail.com;resources=%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2Ffir-demo-project/result
+
+Fehlende Berechtigungen: servicehealth.events.list
